@@ -1,0 +1,550 @@
+import 'dart:ui';
+
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import 'main2.dart';
+
+import 'product_tap.dart';
+import 'wear.dart';
+
+class product {
+  String image;
+  String text;
+  var tap;
+  Color color;
+  Color textcolor;
+  product(
+      {required this.image,
+      required this.text,
+      required this.tap,
+      required this.color,
+      required this.textcolor});
+}
+
+class product1 extends StatefulWidget {
+  @override
+  State<product1> createState() => _product1State();
+}
+
+class _product1State extends State<product1> {
+  List<product> list = [
+    product(
+        textcolor: Colors.white,
+        color: Color.fromRGBO(100, 181, 246, 1),
+        image: "yaksh_img/landscap/download__1_-removebg-preview.png",
+        text: "Camera",
+        tap: camera()),
+    product(
+        textcolor: Colors.black,
+        color: Colors.white,
+        image: "yaksh_img/landscap/download__2_-removebg-preview.png",
+        text: "Drons",
+        tap: dron()),
+    product(
+        color: Color.fromRGBO(100, 181, 246, 1),
+        textcolor: Colors.white,
+        image: "yaksh_img/landscap/download__3_-removebg-preview.png",
+        text: "Mobiles",
+        tap: mobile()),
+    product(
+        color: Colors.white,
+        textcolor: Colors.black,
+        image: "yaksh_img/landscap/download__4_-removebg-preview.png",
+        text: "T.V.",
+        tap: TV()),
+    product(
+        color: Colors.white,
+        textcolor: Colors.black,
+        image: 'yaksh_img/landscap/download-removebg-preview.png',
+        text: "Gamepad",
+        tap: Gamepad()),
+    product(
+        color: Color.fromRGBO(100, 181, 246, 1),
+        textcolor: Colors.white,
+        image: 'yaksh_img/landscap/download__18_-removebg-preview.png',
+        text: "AC",
+        tap: AC()),
+    product(
+        color: Colors.white,
+        textcolor: Colors.black,
+        image: 'yaksh_img/landscap/earphone.jpg',
+        text: "Earphones",
+        tap: earphone()),
+    product(
+        color: Color.fromRGBO(100, 181, 246, 1),
+        textcolor: Colors.white,
+        image: 'yaksh_img/landscap/headphone.png',
+        text: "Headphones",
+        tap: headphone()),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(15),
+      alignment: Alignment.center,
+      height: 270,
+      width: MediaQuery.of(context).size.width,
+      child: GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.all(0),
+        itemCount: list.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, mainAxisExtent: 110, childAspectRatio: 1 / 1),
+        itemBuilder: (context, index) {
+          return Container(
+            decoration: BoxDecoration(
+                boxShadow: [BoxShadow(blurRadius: 8, color: Colors.black)],
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(10),
+                    topLeft: Radius.circular(10)),
+                // color: list[index].color,
+                color: Colors.white),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => list[index].tap,
+                    ));
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      alignment: Alignment.center,
+                      height: 70,
+                      width: 70,
+                      child: Image.asset(
+                        list[index].image,
+                        fit: BoxFit.contain,
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      list[index].text,
+                      // style: TextStyle(color: list[index].textcolor),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class AA extends StatelessWidget {
+  const AA({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class topbrandchoice extends StatefulWidget {
+  const topbrandchoice({Key? key}) : super(key: key);
+
+  @override
+  State<topbrandchoice> createState() => _topbrandchoiceState();
+}
+
+class _topbrandchoiceState extends State<topbrandchoice> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(102, 228, 222, 222),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Top Brand Choicex   💯",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return logo();
+                          },
+                        ));
+                      },
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Colors.grey),
+                      ))
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    ]);
+  }
+}
+
+class tpbrandchoicedetails extends StatefulWidget {
+  const tpbrandchoicedetails({Key? key}) : super(key: key);
+
+  @override
+  State<tpbrandchoicedetails> createState() => _tpbrandchoicedetailsState();
+}
+
+class _tpbrandchoicedetailsState extends State<tpbrandchoicedetails> {
+  var logos = [
+    'yaksh_img/logos/logo.png',
+    'yaksh_img/logos/logo1.jpg',
+    'yaksh_img/logos/logo2.png',
+    'yaksh_img/logos/logo4.png',
+    'yaksh_img/logos/logo5.jpg',
+    'yaksh_img/logos/images.jpg',
+    'yaksh_img/logos/logo7.png',
+    'yaksh_img/logos/logo8.png',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+        child: Container(
+          color: Colors.white,
+          height: 80,
+          width: MediaQuery.of(context).size.width,
+          child: GridView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: logos.length,
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return logo();
+                    },
+                  ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        logos[index],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Ourblogposts extends StatefulWidget {
+  const Ourblogposts({Key? key}) : super(key: key);
+
+  @override
+  State<Ourblogposts> createState() => _OurblogpostsState();
+}
+
+class _OurblogpostsState extends State<Ourblogposts> {
+  var mark = [
+    'yaksh_img/logos/logo.png',
+    'yaksh_img/logos/logo1.jpg',
+    'yaksh_img/logos/logo2.png',
+    'yaksh_img/logos/logo4.png',
+    'yaksh_img/logos/logo5.jpg',
+  ];
+  final newslist = [
+    '''Seating Collection 
+    Inspiration
+is not enough for people''',
+    '''Exterior ideas : 10 colored
+     Fiber Garden seates''',
+    '''Creative water features
+     and exterior design''',
+    '''Seating Collection 
+    Inspiration
+is not enough for people''',
+    '''Creative water features
+     and exterior design''',
+  ];
+  final newsdate = [
+    'May 1,2018',
+    'May 24,2023',
+    'Apil 30,2018',
+    'May 25 2005',
+    'March 13 2005'
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Container(
+            color: Color.fromARGB(102, 228, 222, 222),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Color.fromARGB(113, 255, 255, 255),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Our blog posts",
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "See all",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                ClipRRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                    child: Container(
+                      height: 200,
+                      color: Color.fromARGB(110, 255, 255, 255),
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        dragStartBehavior: DragStartBehavior.start,
+                        scrollDirection: Axis.vertical,
+                        itemCount: mark.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.zero,
+                            padding: EdgeInsets.zero,
+                            alignment: Alignment.topCenter,
+                            height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            child: Card(
+                              elevation: 10,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    child: Image.asset(
+                                      mark[index],
+                                      fit: BoxFit.contain,
+                                    ),
+                                    width: 150,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(newslist[index]),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        newsdate[index],
+                                        style: TextStyle(color: Colors.grey),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )),
+      ),
+    );
+  }
+}
+
+class recentcollection extends StatefulWidget {
+  const recentcollection({Key? key}) : super(key: key);
+
+  @override
+  State<recentcollection> createState() => _recentcollectionState();
+}
+
+class _recentcollectionState extends State<recentcollection> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Recent collections ",
+                style: TextStyle(fontSize: 20),
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "See all",
+                    style: TextStyle(color: Colors.grey),
+                  ))
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            color: Colors.white,
+            height: 300,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.all(0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        height: 145,
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => manswear(),
+                                  ));
+                            },
+                            child: Image.asset('yaksh_img/waer/MANS (2).png')),
+                      ),
+                      Container(
+                        height: 145,
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => manswear(),
+                                  ));
+                            },
+                            child: Image.asset('yaksh_img/waer/mans.png')),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 10),
+                  Container(
+                    height: 300,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => kidswaer(),
+                            ));
+                      },
+                      child: Image.asset(
+                        "yaksh_img/waer/kids.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 145,
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => womanswaer(),
+                                ),
+                              );
+                            },
+                            child: Image.asset('yaksh_img/waer/WOMAN (2).png')),
+                      ),
+                      Container(
+                        height: 145,
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => womanswaer(),
+                                ),
+                              );
+                            },
+                            child: Image.asset('yaksh_img/waer/woman.png')),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class cardimg extends StatefulWidget {
+  const cardimg({Key? key}) : super(key: key);
+
+  @override
+  State<cardimg> createState() => _cardimgState();
+}
+
+class _cardimgState extends State<cardimg> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Card(
+            child: Image.asset("yaksh_img/landscap/sale7.jpg"),
+            elevation: 20,
+          ),
+          Card(
+            child: Image.asset("yaksh_img/landscap/sale8.jpg"),
+            elevation: 20,
+          )
+        ],
+      ),
+    );
+  }
+}
