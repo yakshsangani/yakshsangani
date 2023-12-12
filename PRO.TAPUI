@@ -1,0 +1,1167 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:yaksh/project/ontap.dart';
+import 'package:dots_indicator/dots_indicator.dart';
+import 'main2.dart';
+import 'package:readmore/readmore.dart';
+
+import 'payment.dart';
+
+class UI extends StatefulWidget {
+  final image;
+  final text;
+  final details;
+  final price;
+  final title;
+  var mob;
+  var cam;
+  var dron;
+  var tv;
+  var ga;
+  var ac;
+  var he;
+  var ea;
+  var sh;
+  var wa;
+  var wat;
+  var ma;
+  var kid;
+  var wom;
+  UI({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.text,
+    required this.details,
+    required this.price,
+    this.mob,
+    this.he,
+    this.ea,
+    this.ac,
+    this.dron,
+    this.ga,
+    this.tv,
+    this.cam,
+    this.sh,
+    this.wa,
+    this.wat,
+    this.ma,
+    this.kid,
+    this.wom,
+  }) : super(key: key);
+
+  @override
+  State<UI> createState() => _UIState();
+}
+
+class _UIState extends State<UI> {
+  var cam1 = [
+    'yaksh_img/img_list/camera/ca1L1.png',
+    'yaksh_img/img_list/camera/ca1L2.png',
+    'yaksh_img/img_list/camera/ca1L3.png',
+  ];
+  var cam2 = [
+    'yaksh_img/img_list/camera/ca2L1.png',
+    'yaksh_img/img_list/camera/ca2L2.png',
+    'yaksh_img/img_list/camera/ca2L3.png',
+    'yaksh_img/img_list/camera/ca2L4.png',
+  ];
+  var cam3 = [
+    'yaksh_img/img_list/camera/ca3L1.png',
+    'yaksh_img/img_list/camera/ca3L2.png',
+  ];
+  var cam4 = [
+    'yaksh_img/img_list/camera/ca4L1.png',
+    'yaksh_img/img_list/camera/ca4L2.png',
+    'yaksh_img/img_list/camera/ca4L3.png',
+  ];
+  var cam5 = [
+    'yaksh_img/img_list/camera/ca5L1.png',
+    'yaksh_img/img_list/camera/ca5L2.png',
+    'yaksh_img/img_list/camera/ca5L3.jpg',
+  ];
+  var cam6 = [
+    'yaksh_img/img_list/camera/ca6L1.png',
+    'yaksh_img/img_list/camera/ca6L2.png',
+    'yaksh_img/img_list/camera/ca6L3.jpg',
+  ];
+  var cam7 = [
+    'yaksh_img/img_list/camera/ca7L1.png',
+    'yaksh_img/img_list/camera/ca7L2.png',
+    'yaksh_img/img_list/camera/ca7L3.png',
+  ];
+  var cam8 = [
+    'yaksh_img/img_list/camera/ca8L1.png',
+    'yaksh_img/img_list/camera/ca8L2.png',
+    'yaksh_img/img_list/camera/ca8L2.jpg',
+  ];
+  var dron1 = [
+    "yaksh_img/img_list/dron/dr1L1.jpg",
+    "yaksh_img/img_list/dron/dr1L2.jpg",
+    "yaksh_img/img_list/dron/dr1L3.jpg",
+  ];
+  var dron2 = [
+    "yaksh_img/img_list/dron/dr2L1.jpg",
+    "yaksh_img/img_list/dron/dr2L2.jpg",
+    "yaksh_img/img_list/dron/dr2L3.jpg",
+  ];
+  var dron3 = [
+    "yaksh_img/img_list/dron/dr3L1.jpg",
+    "yaksh_img/img_list/dron/dr3L2.jpg",
+    "yaksh_img/img_list/dron/dr3L3.jpg",
+  ];
+  var dron4 = [
+    "yaksh_img/img_list/dron/dr4L2.jpg",
+    "yaksh_img/img_list/dron/dr4L3.jpg",
+  ];
+  var dron5 = [
+    "yaksh_img/img_list/dron/dr5L1.jpg",
+    "yaksh_img/img_list/dron/dr5L2.jpg",
+    "yaksh_img/img_list/dron/dr5L3.jpg",
+  ];
+  var dron6 = [
+    "yaksh_img/img_list/dron/dr6L1.jpg",
+    "yaksh_img/img_list/dron/dr6L2.jpg",
+    "yaksh_img/img_list/dron/dr6L3.jpg",
+  ];
+
+  var mo1 = [
+    'yaksh_img/img_list/mobile/mo1L1.png',
+    'yaksh_img/img_list/mobile/mo1L2.png',
+    'yaksh_img/img_list/mobile/mo1L3.png',
+    'yaksh_img/img_list/mobile/mo1L4.png',
+  ];
+  var mo2 = [
+    'yaksh_img/img_list/mobile/mo2L1.png',
+    'yaksh_img/img_list/mobile/mo2L2.png',
+    'yaksh_img/img_list/mobile/mo2L3.png',
+    'yaksh_img/img_list/mobile/mo2L4.png',
+  ];
+  var mo3 = [
+    'yaksh_img/img_list/mobile/mo3L1.png',
+    'yaksh_img/img_list/mobile/mo3L2.png',
+    'yaksh_img/img_list/mobile/mo3L3.png',
+    'yaksh_img/img_list/mobile/mo3L4.png',
+  ];
+  var mo4 = [
+    'yaksh_img/img_list/mobile/mo4L1.png',
+    'yaksh_img/img_list/mobile/mo4L2.png',
+    'yaksh_img/img_list/mobile/mo4L3.png',
+    'yaksh_img/img_list/mobile/mo4L4.png',
+  ];
+  var mo5 = [
+    'yaksh_img/img_list/mobile/mo5L1.png',
+    'yaksh_img/img_list/mobile/mo5L2.png',
+    'yaksh_img/img_list/mobile/mo5L3.png',
+    'yaksh_img/img_list/mobile/mo5L4.png',
+  ];
+  var mo6 = [
+    'yaksh_img/img_list/mobile/mo6L1.png',
+    'yaksh_img/img_list/mobile/mo6L2.png',
+    'yaksh_img/img_list/mobile/mo6L3.png',
+    'yaksh_img/img_list/mobile/mo6L4.png',
+  ];
+  var tv1 = [
+    "yaksh_img/img_list/tv/tv1L1.jpg",
+    "yaksh_img/img_list/tv/tv1L2.jpg",
+    "yaksh_img/img_list/tv/tv1L3.jpg",
+  ];
+  var tv2 = [
+    "yaksh_img/img_list/tv/tv2L1.jpg",
+    "yaksh_img/img_list/tv/tv2L2.jpg",
+    "yaksh_img/img_list/tv/tv2L3.jpg",
+  ];
+  var tv3 = [
+    "yaksh_img/img_list/tv/tv3L1.jpg",
+    "yaksh_img/img_list/tv/tv3L2.jpg",
+    "yaksh_img/img_list/tv/tv3L3.jpg",
+  ];
+  var tv4 = [
+    "yaksh_img/img_list/tv/tv4L1.jpg",
+    "yaksh_img/img_list/tv/tv4L2.jpg",
+    "yaksh_img/img_list/tv/tv4L3.jpg",
+  ];
+  var tv5 = [
+    "yaksh_img/img_list/tv/tv5L1.jpg",
+    "yaksh_img/img_list/tv/tv5L2.jpg",
+    "yaksh_img/img_list/tv/tv5L3.jpg",
+  ];
+  var tv6 = [
+    "yaksh_img/img_list/tv/tv6L1.jpg",
+    "yaksh_img/img_list/tv/tv6L2.jpg",
+    "yaksh_img/img_list/tv/tv6L3.jpg",
+  ];
+  var ga1 = [
+    'yaksh_img/img_list/gamepad/ga1L1.jpg',
+    'yaksh_img/img_list/gamepad/ga1L2.jpg',
+    'yaksh_img/img_list/gamepad/ga1L3.jpg',
+  ];
+  var ga2 = [
+    'yaksh_img/img_list/gamepad/ga2L1.jpg',
+    'yaksh_img/img_list/gamepad/ga2L2.jpg',
+    'yaksh_img/img_list/gamepad/ga2L3.jpg',
+  ];
+  var ga3 = [
+    'yaksh_img/img_list/gamepad/ga3L1.jpg',
+    'yaksh_img/img_list/gamepad/ga3L2.jpg',
+    'yaksh_img/img_list/gamepad/ga3L3.jpg',
+  ];
+  var ga4 = [
+    'yaksh_img/img_list/gamepad/ga4L1.jpg',
+    'yaksh_img/img_list/gamepad/ga4L2.jpg',
+    'yaksh_img/img_list/gamepad/ga4L3.jpg',
+  ];
+  var ga5 = [
+    'yaksh_img/img_list/gamepad/ga5L1.jpg',
+    'yaksh_img/img_list/gamepad/ga5L2.jpg',
+    'yaksh_img/img_list/gamepad/ga5L3.jpg',
+  ];
+  var ga6 = [
+    'yaksh_img/img_list/gamepad/ga6L1.jpg',
+    'yaksh_img/img_list/gamepad/ga6L2.jpg',
+    'yaksh_img/img_list/gamepad/ga6L3.jpg',
+  ];
+  var ac1 = [
+    'yaksh_img/img_list/ac/ac1L1.jpg',
+    'yaksh_img/img_list/ac/ac1L2.jpg',
+    'yaksh_img/img_list/ac/ac1L3.jpg',
+  ];
+  var ac2 = [
+    'yaksh_img/img_list/ac/ac2L1.jpg',
+    'yaksh_img/img_list/ac/ac2L2.jpg',
+    'yaksh_img/img_list/ac/ac2L3.jpg',
+  ];
+  var ac3 = [
+    'yaksh_img/img_list/ac/ac3L1.jpg',
+    'yaksh_img/img_list/ac/ac3L2.jpg',
+    'yaksh_img/img_list/ac/ac3L3.jpg',
+  ];
+  var ac4 = [
+    'yaksh_img/img_list/ac/ac4L1.png',
+    'yaksh_img/img_list/ac/ac4L2.jpg',
+    'yaksh_img/img_list/ac/ac4L3.jpg',
+  ];
+  var ac5 = [
+    'yaksh_img/img_list/ac/ac5L1.jpg',
+    'yaksh_img/img_list/ac/ac5L2.jpg',
+    'yaksh_img/img_list/ac/ac5L3.jpg',
+  ];
+  var ac6 = [
+    'yaksh_img/img_list/ac/ac6L1.jpg',
+    'yaksh_img/img_list/ac/ac6L2.jpg',
+    'yaksh_img/img_list/ac/ac6L3.jpg',
+  ];
+  var ea1 = [
+    'yaksh_img/img_list/earphone/ea1L1.jpg',
+    'yaksh_img/img_list/earphone/ea1L2.jpg',
+    'yaksh_img/img_list/earphone/ea1L3.jpg',
+  ];
+  var ea2 = [
+    'yaksh_img/img_list/earphone/ea2L1.jpg',
+    'yaksh_img/img_list/earphone/ea2L2.jpg',
+    'yaksh_img/img_list/earphone/ea2L3.jpg',
+  ];
+  var ea3 = [
+    'yaksh_img/img_list/earphone/ea3L1.jpg',
+    'yaksh_img/img_list/earphone/ea3L2.jpg',
+    'yaksh_img/img_list/earphone/ea3L3.jpg',
+  ];
+  var ea4 = [
+    'yaksh_img/img_list/earphone/ea4L1.jpg',
+    'yaksh_img/img_list/earphone/ea4L2.jpg',
+    'yaksh_img/img_list/earphone/ea4L3.jpg',
+  ];
+  var ea5 = [
+    'yaksh_img/img_list/earphone/ea5L1.jpg',
+    'yaksh_img/img_list/earphone/ea5L2.jpg',
+    'yaksh_img/img_list/earphone/ea5L3.jpg',
+  ];
+  var ea6 = [
+    'yaksh_img/img_list/earphone/ea6L1.jpg',
+    'yaksh_img/img_list/earphone/ea6L2.jpg',
+    'yaksh_img/img_list/earphone/ea6L3.jpg',
+  ];
+  var he1 = [
+    'yaksh_img/img_list/headphone/he1L1.jpg',
+    'yaksh_img/img_list/headphone/he1L2.jpg',
+    'yaksh_img/img_list/headphone/he1L3.jpg',
+  ];
+  var he2 = [
+    'yaksh_img/img_list/headphone/he2L1.jpg',
+    'yaksh_img/img_list/headphone/he2L2.jpg',
+    'yaksh_img/img_list/headphone/he2L3.jpg',
+  ];
+  var he3 = [
+    'yaksh_img/img_list/headphone/he3L1.jpg',
+    'yaksh_img/img_list/headphone/he3L2.jpg',
+    'yaksh_img/img_list/headphone/he3L3.jpg',
+  ];
+  var he4 = [
+    'yaksh_img/img_list/headphone/he4L1.jpg',
+    'yaksh_img/img_list/headphone/he4L2.jpg',
+    'yaksh_img/img_list/headphone/he4L3.jpg',
+  ];
+  var he5 = [
+    'yaksh_img/img_list/headphone/he5L1.jpg',
+    'yaksh_img/img_list/headphone/he5L2.jpg',
+    'yaksh_img/img_list/headphone/he5L3.jpg',
+  ];
+  var he6 = [
+    'yaksh_img/img_list/headphone/he6L1.jpg',
+    'yaksh_img/img_list/headphone/he6L2.jpg',
+    'yaksh_img/img_list/headphone/he6L3.jpg',
+  ];
+  var sh1 = [
+    'yaksh_img/img_list/shoes/sh1L1.jpg',
+    'yaksh_img/img_list/shoes/sh1L2.jpg',
+    'yaksh_img/img_list/shoes/sh1L3.jpg',
+  ];
+  var sh2 = [
+    'yaksh_img/img_list/shoes/sh2L1.jpg',
+    'yaksh_img/img_list/shoes/sh2L2.jpg',
+    'yaksh_img/img_list/shoes/sh2L3.jpg',
+  ];
+  var sh3 = [
+    'yaksh_img/img_list/shoes/sh3L1.jpg',
+    'yaksh_img/img_list/shoes/sh3L2.jpg',
+    'yaksh_img/img_list/shoes/sh3L3.jpg',
+  ];
+  var sh4 = [
+    'yaksh_img/img_list/shoes/sh4L1.jpg',
+    'yaksh_img/img_list/shoes/sh4L2.jpg',
+    'yaksh_img/img_list/shoes/sh4L3.jpg',
+  ];
+  var sh5 = [
+    'yaksh_img/img_list/shoes/sh5L1.jpg',
+    'yaksh_img/img_list/shoes/sh5L2.jpg',
+    'yaksh_img/img_list/shoes/sh5L3.jpg',
+  ];
+  var sh6 = [
+    'yaksh_img/img_list/shoes/sh6L1.jpg',
+    'yaksh_img/img_list/shoes/sh6L2.jpg',
+    'yaksh_img/img_list/shoes/sh6L3.jpg',
+  ];
+  var wa1 = [
+    'yaksh_img/img_list/watch/wa1L1.jpg',
+    'yaksh_img/img_list/watch/wa1L2.jpg',
+    'yaksh_img/img_list/watch/wa1L3.jpg',
+  ];
+  var wa2 = [
+    'yaksh_img/img_list/watch/wa2L1.jpg',
+    'yaksh_img/img_list/watch/wa2L2.jpg',
+    'yaksh_img/img_list/watch/wa2L3.jpg',
+  ];
+  var wa3 = [
+    'yaksh_img/img_list/watch/wa3L1.jpg',
+    'yaksh_img/img_list/watch/wa3L2.jpg',
+    'yaksh_img/img_list/watch/wa3L3.jpg',
+  ];
+  var wa4 = [
+    'yaksh_img/img_list/watch/wa4L1.jpg',
+    'yaksh_img/img_list/watch/wa4L2.jpg',
+    'yaksh_img/img_list/watch/wa4L3.jpg',
+  ];
+  var wa5 = [
+    'yaksh_img/img_list/watch/wa5L1.jpg',
+    'yaksh_img/img_list/watch/wa5L2.jpg',
+    'yaksh_img/img_list/watch/wa5L3.jpg',
+  ];
+  var wa6 = [
+    'yaksh_img/img_list/watch/wa6L1.jpg',
+    'yaksh_img/img_list/watch/wa6L2.jpg',
+    'yaksh_img/img_list/watch/wa6L3.jpg',
+  ];
+  var wat1 = [
+    'yaksh_img/img_list/watch/wat1L1.jpg',
+    'yaksh_img/img_list/watch/wat1L2.jpg',
+    'yaksh_img/img_list/watch/wat1L3.jpg',
+  ];
+  var wat2 = [
+    'yaksh_img/img_list/watch/wat2L1.jpg',
+    'yaksh_img/img_list/watch/wat2L2.jpg',
+    'yaksh_img/img_list/watch/wat2L3.jpg',
+  ];
+  var wat3 = [
+    'yaksh_img/img_list/watch/wat3L1.jpg',
+    'yaksh_img/img_list/watch/wat3L2.jpg',
+    'yaksh_img/img_list/watch/wat3L3.jpg',
+  ];
+  var wat4 = [
+    'yaksh_img/img_list/watch/wat4L1.jpg',
+    'yaksh_img/img_list/watch/wat4L2.jpg',
+    'yaksh_img/img_list/watch/wat4L3.jpg',
+  ];
+  var wat5 = [
+    'yaksh_img/img_list/watch/wat5L1.jpg',
+    'yaksh_img/img_list/watch/wat5L2.jpg',
+    'yaksh_img/img_list/watch/wat5L3.jpg',
+  ];
+  var wat6 = [
+    'yaksh_img/img_list/watch/wat6L1.jpg',
+    'yaksh_img/img_list/watch/wat6L2.jpg',
+    'yaksh_img/img_list/watch/wat6L3.jpg',
+  ];
+  var man1 = [
+    'yaksh_img/waer/man1L1.jpg',
+    'yaksh_img/waer/man1L2.jpg',
+    'yaksh_img/waer/man1L3.jpg'
+  ];
+  var man2 = [
+    'yaksh_img/waer/man2L1.jpg',
+    'yaksh_img/waer/man2L2.jpg',
+    'yaksh_img/waer/man2L3.jpg'
+  ];
+  var man3 = [
+    'yaksh_img/waer/man3L1.jpg',
+    'yaksh_img/waer/man3L2.jpg',
+    'yaksh_img/waer/man3L3.jpg'
+  ];
+  var man4 = [
+    'yaksh_img/waer/man4L1.jpg',
+    'yaksh_img/waer/man4L2.jpg',
+    'yaksh_img/waer/man4L3.jpg'
+  ];
+  var man5 = [
+    'yaksh_img/waer/man5L1.jpg',
+    'yaksh_img/waer/man5L2.jpg',
+    'yaksh_img/waer/man5L3.jpg'
+  ];
+  var man6 = [
+    'yaksh_img/waer/man6L1.jpg',
+    'yaksh_img/waer/man6L2.jpg',
+    'yaksh_img/waer/man6L3.jpg'
+  ];
+  var man7 = [
+    'yaksh_img/waer/man7L1.jpg',
+    'yaksh_img/waer/man7L2.jpg',
+    'yaksh_img/waer/man7L3.jpg'
+  ];
+  var man8 = [
+    'yaksh_img/waer/man8L1.jpg',
+    'yaksh_img/waer/man8L2.jpg',
+    'yaksh_img/waer/man8L3.jpg'
+  ];
+  var kid0 = [
+    'yaksh_img/waer/kid1L1.jpg',
+    'yaksh_img/waer/kid1L2.jpg',
+    'yaksh_img/waer/kid1L3.jpg',
+  ];
+  var kid1 = [
+    'yaksh_img/waer/kid2L1.jpg',
+    'yaksh_img/waer/kid2L2.jpg',
+    'yaksh_img/waer/kid2L3.jpg',
+  ];
+  var kid2 = [
+    'yaksh_img/waer/kid3L1.jpg',
+    'yaksh_img/waer/kid3L2.jpg',
+    'yaksh_img/waer/kid3L3.jpg',
+  ];
+  var kid3 = [
+    'yaksh_img/waer/kid4L1.jpg',
+    'yaksh_img/waer/kid4L2.jpg',
+    'yaksh_img/waer/kid4L3.jpg',
+  ];
+  var kid4 = [
+    'yaksh_img/waer/kid5L1.jpg',
+    'yaksh_img/waer/kid5L2.jpg',
+    'yaksh_img/waer/kid5L3.jpg',
+  ];
+  var kid5 = [
+    'yaksh_img/waer/kid6L1.jpg',
+    'yaksh_img/waer/kid6L2.jpg',
+    'yaksh_img/waer/kid6L3.jpg',
+  ];
+  var kid6 = [
+    'yaksh_img/waer/kid7L1.jpg',
+    'yaksh_img/waer/kid7L2.jpg',
+    'yaksh_img/waer/kid7L3.jpg',
+  ];
+  var kid7 = [
+    'yaksh_img/waer/kid8L1.jpg',
+    'yaksh_img/waer/kid8L2.jpg',
+    'yaksh_img/waer/kid8L3.jpg',
+  ];
+  var wom0 = [
+    'yaksh_img/waer/wom1L1.jpg',
+    'yaksh_img/waer/wom1L2.jpg',
+    'yaksh_img/waer/wom1L3.jpg',
+  ];
+  var wom1 = [
+    'yaksh_img/waer/wom2L1.jpg',
+    'yaksh_img/waer/wom2L2.jpg',
+    'yaksh_img/waer/wom2L3.jpg',
+  ];
+  var wom2 = [
+    'yaksh_img/waer/wom3L1.jpg',
+    'yaksh_img/waer/wom3L2.jpg',
+    'yaksh_img/waer/wom3L3.jpg',
+  ];
+  var wom3 = [
+    'yaksh_img/waer/wom4L1.jpg',
+    'yaksh_img/waer/wom4L2.jpg',
+    'yaksh_img/waer/wom4L3.jpg',
+  ];
+  var wom4 = [
+    'yaksh_img/waer/wom5L1.jpg',
+    'yaksh_img/waer/wom5L2.jpg',
+    'yaksh_img/waer/wom5L3.jpg',
+  ];
+  var wom5 = [
+    'yaksh_img/waer/wom6L1.jpg',
+    'yaksh_img/waer/wom6L2.jpg',
+    'yaksh_img/waer/wom6L3.jpg',
+  ];
+  var wom6 = [
+    'yaksh_img/waer/wom7L1.jpg',
+    'yaksh_img/waer/wom7L2.jpg',
+    'yaksh_img/waer/wom7L3.jpg',
+  ];
+  var wom7 = [
+    'yaksh_img/waer/wom8L1.jpg',
+    'yaksh_img/waer/wom8L2.jpg',
+    'yaksh_img/waer/wom8L3.jpg',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        bottom: true,
+        maintainBottomViewPadding: false,
+        child: Scaffold(
+            body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  // boxShadow: [BoxShadow(color: Colors.black, blurRadius: 10)],
+                  color: Color.fromARGB(154, 58, 156, 154),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MaterialButton(
+                      minWidth: 80,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      child: Text(
+                        widget.title,
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(width: 30),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Colors.white,
+                        )),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 275,
+                            width: MediaQuery.of(context).size.width,
+                            child: CarouselSlider(
+                              items: widget.cam == 0
+                                  ? cam1
+                                      .map((e) => Center(
+                                            child: Image.asset(e,
+                                                fit: BoxFit.scaleDown),
+                                          ))
+                                      .toList()
+                                  : widget.cam == 1
+                                      ? cam2
+                                          .map((e) => Center(
+                                                child: Image.asset(e,
+                                                    fit: BoxFit.scaleDown),
+                                              ))
+                                          .toList()
+                                      : widget.cam == 2
+                                          ? cam3
+                                              .map((e) => Center(
+                                                    child: Image.asset(e,
+                                                        fit: BoxFit.scaleDown),
+                                                  ))
+                                              .toList()
+                                          : widget.cam == 3
+                                              ? cam4
+                                                  .map((e) => Center(
+                                                        child: Image.asset(e,
+                                                            fit: BoxFit
+                                                                .scaleDown),
+                                                      ))
+                                                  .toList()
+                                              : widget.cam == 4
+                                                  ? cam5
+                                                      .map((e) => Center(
+                                                            child: Image.asset(
+                                                                e,
+                                                                fit: BoxFit
+                                                                    .scaleDown),
+                                                          ))
+                                                      .toList()
+                                                  : widget.cam == 5
+                                                      ? cam6
+                                                          .map((e) => Center(
+                                                                child: Image.asset(
+                                                                    e,
+                                                                    fit: BoxFit
+                                                                        .scaleDown),
+                                                              ))
+                                                          .toList()
+                                                      : widget.cam == 6
+                                                          ? cam7
+                                                              .map(
+                                                                  (e) => Center(
+                                                                        child: Image.asset(
+                                                                            e,
+                                                                            fit:
+                                                                                BoxFit.scaleDown),
+                                                                      ))
+                                                              .toList()
+                                                          : widget.cam == 7
+                                                              ? cam8
+                                                                  .map((e) =>
+                                                                      Center(
+                                                                        child: Image.asset(
+                                                                            e,
+                                                                            fit:
+                                                                                BoxFit.scaleDown),
+                                                                      ))
+                                                                  .toList()
+                                                              : widget.dron == 0
+                                                                  ? dron1
+                                                                      .map((e) => Center(
+                                                                          child: Image.asset(
+                                                                              e)))
+                                                                      .toList()
+                                                                  : widget.dron ==
+                                                                          1
+                                                                      ? dron2
+                                                                          .map((e) => Center(
+                                                                              child: Image.asset(
+                                                                                  e)))
+                                                                          .toList()
+                                                                      : widget.dron ==
+                                                                              2
+                                                                          ? dron3
+                                                                              .map((e) => Center(child: Image.asset(e)))
+                                                                              .toList()
+                                                                          : widget.dron == 3
+                                                                              ? dron4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                              : widget.dron == 4
+                                                                                  ? dron5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                  : widget.dron == 5
+                                                                                      ? dron6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                      : widget.tv == 0
+                                                                                          ? tv1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                          : widget.tv == 1
+                                                                                              ? tv2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                              : widget.tv == 2
+                                                                                                  ? tv3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                  : widget.tv == 3
+                                                                                                      ? tv4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                      : widget.tv == 4
+                                                                                                          ? tv5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                          : widget.tv == 5
+                                                                                                              ? tv6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                              : widget.ga == 0
+                                                                                                                  ? ga1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                  : widget.ga == 1
+                                                                                                                      ? ga2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                      : widget.ga == 2
+                                                                                                                          ? ga3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                          : widget.ga == 3
+                                                                                                                              ? ga4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                              : widget.ga == 4
+                                                                                                                                  ? ga5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                  : widget.ga == 5
+                                                                                                                                      ? ga6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                      : widget.ac == 0
+                                                                                                                                          ? ac1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                          : widget.ac == 1
+                                                                                                                                              ? ac2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                              : widget.ac == 2
+                                                                                                                                                  ? ac3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                  : widget.ac == 3
+                                                                                                                                                      ? ac4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                      : widget.ac == 4
+                                                                                                                                                          ? ac5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                          : widget.ac == 5
+                                                                                                                                                              ? ac6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                              : widget.ea == 0
+                                                                                                                                                                  ? ea1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                  : widget.ea == 1
+                                                                                                                                                                      ? ea2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                      : widget.ea == 2
+                                                                                                                                                                          ? ea3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                          : widget.ea == 3
+                                                                                                                                                                              ? ea4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                              : widget.ea == 4
+                                                                                                                                                                                  ? ea5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                  : widget.ea == 5
+                                                                                                                                                                                      ? ea6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                      : widget.he == 0
+                                                                                                                                                                                          ? he1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                          : widget.he == 1
+                                                                                                                                                                                              ? he2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                              : widget.he == 2
+                                                                                                                                                                                                  ? he3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                  : widget.he == 3
+                                                                                                                                                                                                      ? he4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                      : widget.he == 4
+                                                                                                                                                                                                          ? he5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                          : widget.he == 5
+                                                                                                                                                                                                              ? he6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                              : widget.sh == 0
+                                                                                                                                                                                                                  ? sh1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                  : widget.sh == 1
+                                                                                                                                                                                                                      ? sh2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                      : widget.sh == 2
+                                                                                                                                                                                                                          ? sh3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                          : widget.sh == 3
+                                                                                                                                                                                                                              ? sh4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                              : widget.sh == 4
+                                                                                                                                                                                                                                  ? sh5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                  : widget.sh == 5
+                                                                                                                                                                                                                                      ? sh6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                      : widget.wa == 0
+                                                                                                                                                                                                                                          ? wa1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                          : widget.wa == 1
+                                                                                                                                                                                                                                              ? wa2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                              : widget.wa == 2
+                                                                                                                                                                                                                                                  ? wa3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                  : widget.wa == 3
+                                                                                                                                                                                                                                                      ? wa4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                      : widget.wa == 4
+                                                                                                                                                                                                                                                          ? wa5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                          : widget.wa == 5
+                                                                                                                                                                                                                                                              ? wa6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                              : widget.wat == 0
+                                                                                                                                                                                                                                                                  ? wat1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                  : widget.wat == 1
+                                                                                                                                                                                                                                                                      ? wat2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                      : widget.wat == 2
+                                                                                                                                                                                                                                                                          ? wat3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                          : widget.wat == 3
+                                                                                                                                                                                                                                                                              ? wat4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                              : widget.wat == 4
+                                                                                                                                                                                                                                                                                  ? wat5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                  : widget.wat == 5
+                                                                                                                                                                                                                                                                                      ? wat6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                      : widget.mob == 0
+                                                                                                                                                                                                                                                                                          ? mo1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                          : widget.mob == 1
+                                                                                                                                                                                                                                                                                              ? mo2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                              : widget.mob == 2
+                                                                                                                                                                                                                                                                                                  ? mo3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                  : widget.mob == 3
+                                                                                                                                                                                                                                                                                                      ? mo4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                      : widget.mob == 4
+                                                                                                                                                                                                                                                                                                          ? mo5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                          : widget.mob == 5
+                                                                                                                                                                                                                                                                                                              ? mo6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                              : widget.ma == 0
+                                                                                                                                                                                                                                                                                                                  ? man1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                  : widget.ma == 1
+                                                                                                                                                                                                                                                                                                                      ? man2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                      : widget.ma == 2
+                                                                                                                                                                                                                                                                                                                          ? man3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                          : widget.ma == 3
+                                                                                                                                                                                                                                                                                                                              ? man4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                              : widget.ma == 4
+                                                                                                                                                                                                                                                                                                                                  ? man5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                  : widget.ma == 5
+                                                                                                                                                                                                                                                                                                                                      ? man6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                      : widget.ma == 6
+                                                                                                                                                                                                                                                                                                                                          ? man7.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                          : widget.ma == 7
+                                                                                                                                                                                                                                                                                                                                              ? man8.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                              : widget.kid == 0
+                                                                                                                                                                                                                                                                                                                                                  ? kid0.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                  : widget.kid == 1
+                                                                                                                                                                                                                                                                                                                                                      ? kid1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                      : widget.kid == 2
+                                                                                                                                                                                                                                                                                                                                                          ? kid2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                          : widget.kid == 3
+                                                                                                                                                                                                                                                                                                                                                              ? kid3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                              : widget.kid == 4
+                                                                                                                                                                                                                                                                                                                                                                  ? kid4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                  : widget.kid == 5
+                                                                                                                                                                                                                                                                                                                                                                      ? kid5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                      : widget.kid == 6
+                                                                                                                                                                                                                                                                                                                                                                          ? kid6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                          : widget.kid == 7
+                                                                                                                                                                                                                                                                                                                                                                              ? kid7.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                              : widget.wom == 0
+                                                                                                                                                                                                                                                                                                                                                                                  ? wom0.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                  : widget.wom == 1
+                                                                                                                                                                                                                                                                                                                                                                                      ? wom1.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                      : widget.wom == 2
+                                                                                                                                                                                                                                                                                                                                                                                          ? wom2.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                          : widget.wom == 3
+                                                                                                                                                                                                                                                                                                                                                                                              ? wom3.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                              : widget.wom == 4
+                                                                                                                                                                                                                                                                                                                                                                                                  ? wom4.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                                  : widget.wom == 5
+                                                                                                                                                                                                                                                                                                                                                                                                      ? wom5.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                                      : widget.wom == 6
+                                                                                                                                                                                                                                                                                                                                                                                                          ? wom6.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                                          : widget.wom == 7
+                                                                                                                                                                                                                                                                                                                                                                                                              ? wom7.map((e) => Center(child: Image.asset(e))).toList()
+                                                                                                                                                                                                                                                                                                                                                                                                              : null,
+                              options: CarouselOptions(
+                                autoPlay: true,
+                                reverse: true,
+                                autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+                                viewportFraction: 1,
+                                enlargeCenterPage: true,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Expanded(
+                            flex: 6,
+                            child: Container(
+                              height: MediaQuery.of(context).size.height,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30)),
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color.fromARGB(97, 0, 0, 0),
+                                        blurRadius: 7)
+                                  ]),
+                              child: SingleChildScrollView(
+                                physics: ScrollPhysics(
+                                    parent: BouncingScrollPhysics()),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 10, 8, 0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            widget.text,
+                                            style: TextStyle(
+                                                fontSize: 23,
+                                                color: Colors.black),
+                                          ),
+                                          Container(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(3.0),
+                                              child: Text(
+                                                "Fluxstore",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            decoration: BoxDecoration(
+                                                color: Color.fromARGB(
+                                                    255, 69, 142, 244),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomRight:
+                                                      Radius.circular(10),
+                                                  topLeft: Radius.circular(10),
+                                                )),
+                                          )
+                                        ],
+                                      ),
+
+                                      SizedBox(height: 15),
+                                      // Text(
+                                      //   widget.details,
+                                      //   style: TextStyle(fontSize: 18, color: Colors.grey),
+                                      // ),
+                                      // TextButton(
+                                      //     onPressed: () {},
+                                      //     child: Text(
+                                      //       "Tap for more...",
+                                      //       style: TextStyle(color: Colors.grey),
+                                      //     )),
+                                      ReadMoreText(
+                                        widget.details,
+                                        trimLines: 1,
+                                        colorClickableText: Colors.pink,
+                                        trimMode: TrimMode.Line,
+                                        trimCollapsedText: 'Show more',
+                                        style: TextStyle(fontSize: 16),
+                                        trimExpandedText: 'Show less',
+                                        lessStyle: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                        moreStyle: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 15),
+                                      Container(
+                                        child: Text(
+                                          "Price :",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16),
+                                        ),
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                widget.price,
+                                                style: TextStyle(
+                                                    fontSize: 24,
+                                                    color: Colors.green),
+                                              ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.green,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(10),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    10))),
+                                                child: Text(
+                                                  "  offers include  ",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                    Icons.comment,
+                                                    color: Colors.grey,
+                                                    size: 30,
+                                                  )),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 13),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        cart(),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              height: 50,
+                                              width: 180,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: 2,
+                                                      color: Colors.white),
+                                                  color: Color.fromARGB(
+                                                      255, 0, 204, 255),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: Text(
+                                                  " Add to cart ",
+                                                  style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 255, 253, 253),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        checkout(),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              height: 50,
+                                              width: 180,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: 2,
+                                                      color: Colors.white),
+                                                  color: Color.fromARGB(
+                                                      255, 6, 218, 148),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: Text(
+                                                  " Buy now ",
+                                                  style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 255, 255, 255),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 10),
+                                      Container(
+                                          child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Ratings/Reviews",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 255, 1, 1)),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.star_sharp,
+                                                  color: Color.fromRGBO(
+                                                      252, 190, 4, 1),
+                                                ),
+                                                Icon(Icons.star_sharp,
+                                                    color: Color.fromRGBO(
+                                                        252, 190, 4, 1)),
+                                                Icon(Icons.star_sharp,
+                                                    color: Color.fromRGBO(
+                                                        252, 190, 4, 1)),
+                                                Icon(Icons.star_half_outlined,
+                                                    color: Color.fromRGBO(
+                                                        252, 190, 4, 1)),
+                                                Icon(Icons.star_border,
+                                                    color: Color.fromRGBO(
+                                                        252, 190, 4, 1)),
+                                                Text("/5.5")
+                                              ],
+                                            ),
+                                            SizedBox(height: 10),
+                                            Icon(
+                                              Icons.reviews,
+                                              color: Colors.green,
+                                            )
+                                          ],
+                                        ),
+                                      )),
+
+                                      Divider(
+                                        thickness: 2,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(0),
+                                        child: InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        cart(),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              height: 50,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "Add more discount by bank offers",
+                                                  ),
+                                                  Icon(
+                                                    Icons
+                                                        .arrow_forward_ios_outlined,
+                                                    size: 16,
+                                                    color: Colors.black,
+                                                  )
+                                                ],
+                                              ),
+                                            )),
+                                      ),
+                                      Divider(
+                                        thickness: 2,
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text("Suggasted For You",
+                                          style: TextStyle(fontSize: 17)),
+                                      SizedBox(height: 10),
+                                      happyflashsales(),
+                                      SizedBox(
+                                          child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "For Mans Wear...",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      )),
+                                      watch()
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                  )),
+            ),
+          ],
+        )));
+  }
+}
