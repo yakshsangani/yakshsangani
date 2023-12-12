@@ -1,0 +1,1298 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:yaksh/main.dart';
+import 'package:yaksh/project/main1.dart';
+import 'package:yaksh/project/payment.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:get_storage/get_storage.dart';
+import 'dart:collection';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: setting(),
+  ));
+}
+
+class setting extends StatefulWidget {
+  const setting({super.key});
+
+  @override
+  State<setting> createState() => _settingState();
+}
+
+class _settingState extends State<setting> {
+  bool _switch = true;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Container(
+          child: SingleChildScrollView(
+            padding:
+                EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.top),
+            physics: ScrollPhysics(parent: BouncingScrollPhysics()),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    alignment: Alignment.bottomLeft,
+                    height: 250,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "yaksh_img/download bg/setting bg.jpg"),
+                            fit: BoxFit.cover)),
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, top: 7),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                              child: Icon(Icons.arrow_back_ios_new_sharp,
+                                  color: Colors.white),
+                              onTap: Navigator.of(context).pop),
+                          Text(
+                            "Settings",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 252, 252, 252),
+                                fontSize: 23,
+                                decoration: TextDecoration.none),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color.fromARGB(116, 89, 81, 81)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "yaksh sangani",
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 253, 253, 253),
+                                        fontSize: 18,
+                                        decoration: TextDecoration.none),
+                                  ),
+                                  Text(
+                                    "yakshsangani@gmail.com",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                        decoration: TextDecoration.none),
+                                  )
+                                ],
+                              ),
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    AssetImage('yaksh_img/logos/yaksh.jpg'),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(10),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => s1(),
+                              ));
+                        },
+                        child: Row(
+                          verticalDirection: VerticalDirection.up,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 15, bottom: 15, left: 15, right: 5),
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color:
+                                            Color.fromARGB(255, 249, 246, 246),
+                                        decoration: TextDecoration.none),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.white,
+                              size: 30,
+                            )
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(10),
+                        onTap: () {
+                          setState(() {
+                            storage.write('login', null);
+                          });
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => s1(),
+                              ),
+                              (route) => false);
+                        },
+                        child: Row(
+                          verticalDirection: VerticalDirection.up,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.logout,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 15, bottom: 15, left: 15, right: 5),
+                                  child: Text(
+                                    "Logout",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color:
+                                            Color.fromARGB(255, 249, 246, 246),
+                                        decoration: TextDecoration.none),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.white,
+                              size: 30,
+                            )
+                          ],
+                        ),
+                      )
+                    ]),
+                  ),
+                  Text(
+                    "General settings",
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 249, 246, 246),
+                        decoration: TextDecoration.none),
+                  ),
+                  SizedBox(height: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => wishlist(),
+                          ));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "My Wishlist",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Color.fromARGB(77, 158, 158, 158),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.notifications_none_outlined,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "Notifications",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Switch(
+                          thumbColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.disabled)) {
+                              return Color.fromARGB(255, 248, 248, 248)
+                                  .withOpacity(.48);
+                            }
+                            return Color.fromARGB(255, 250, 248, 246);
+                          }),
+                          trackColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Color.fromARGB(255, 9, 250, 5);
+                            }
+                            return Color.fromARGB(255, 255, 255, 255);
+                          }),
+                          value: _switch,
+                          onChanged: (value) {
+                            setState(() {
+                              _switch = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Color.fromARGB(100, 158, 158, 158),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => changepassword(),
+                          ));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.security_outlined,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "Security & Password",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Color.fromARGB(100, 158, 158, 158),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.language,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "Languages",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "English",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_right_outlined,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Color.fromARGB(100, 158, 158, 158),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.currency_exchange_outlined,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "Currencies",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "INR",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_right_outlined,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Color.fromARGB(96, 158, 158, 158),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star_half_rounded,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "Rate this app",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Color.fromARGB(96, 158, 158, 158),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.info_outline,
+                              color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 10, right: 10, top: 10),
+                              child: Text(
+                                "About us",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 249, 246, 246),
+                                    decoration: TextDecoration.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class changepassword extends StatefulWidget {
+  @override
+  State<changepassword> createState() => _changepasswordState();
+}
+
+class _changepasswordState extends State<changepassword> {
+  var formkeyy = GlobalKey<FormState>();
+
+  bool hidepass1 = true;
+  bool hidepass2 = true;
+  bool onhover = true;
+  String email = storage.read('email');
+  String oldpwd = '';
+  String pwd = '';
+
+  void _ishiden1() {
+    setState(() {
+      hidepass1 = !hidepass1;
+    });
+  }
+
+  void _ishiden2() {
+    setState(() {
+      hidepass2 = !hidepass2;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+            body: Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            'yaksh_img/download bg/Nature’s Neon Forest.jpg',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ClipRRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(33, 255, 255, 255),
+                ),
+                height: 300,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Form(
+                    key: formkeyy,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            InkWell(
+                              child: Icon(
+                                Icons.arrow_back_ios_rounded,
+                                color: Colors.white,
+                              ),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              "Change Password",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SingleChildScrollView(
+                              physics: AlwaysScrollableScrollPhysics(),
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Enter new password",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15)),
+                              ),
+                            ),
+                            ClipRRect(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white24,
+                                      borderRadius: BorderRadius.circular(13)),
+                                  child: TextFormField(
+                                    enableInteractiveSelection: true,
+                                    textInputAction: TextInputAction.next,
+                                    cursorColor:
+                                        Color.fromRGBO(255, 255, 255, 1),
+                                    toolbarOptions: ToolbarOptions(
+                                        copy: true,
+                                        cut: true,
+                                        paste: true,
+                                        selectAll: true),
+                                    obscureText: hidepass1,
+                                    onChanged: (value) {
+                                      pwd = value;
+                                    },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(10),
+                                      suffixIcon: InkWell(
+                                        onTap: () => _ishiden1(),
+                                        // child: Icon(
+                                        //   hidepass ? Icons.password_sharp : Icons.abc,
+                                        //   color: Color.fromARGB(255, 86, 175, 248),
+                                        // ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: (hidepass1
+                                              ? Text(
+                                                  "😌",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )
+                                              : Text(
+                                                  "🙂",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )),
+                                        ),
+                                      ),
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SingleChildScrollView(
+                              physics: AlwaysScrollableScrollPhysics(),
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Enter Old Password",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15)),
+                              ),
+                            ),
+                            ClipRRect(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white24,
+                                      borderRadius: BorderRadius.circular(13)),
+                                  child: TextFormField(
+                                    enableInteractiveSelection: true,
+                                    textInputAction: TextInputAction.next,
+                                    cursorColor:
+                                        Color.fromRGBO(255, 255, 255, 1),
+                                    toolbarOptions: ToolbarOptions(
+                                        copy: true,
+                                        cut: true,
+                                        paste: true,
+                                        selectAll: true),
+                                    onChanged: (value) {
+                                      oldpwd = value;
+                                    },
+                                    obscureText: hidepass2,
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(10),
+                                      suffixIcon: InkWell(
+                                        onTap: () => _ishiden2(),
+                                        // child: Icon(
+                                        //   hidepass ? Icons.password_sharp : Icons.abc,
+                                        //   color: Color.fromARGB(255, 86, 175, 248),
+                                        // ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: (hidepass2
+                                              ? Text(
+                                                  "- -",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )
+                                              : Text(
+                                                  "👀",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )),
+                                        ),
+                                      ),
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => forgetpass(),
+                                      ));
+                                },
+                                child: Text(
+                                  "Forget password",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      color:
+                                          Color.fromARGB(129, 255, 255, 255)),
+                                )),
+                            AnimatedButton(
+                                borderRadius: 20,
+                                height: 50,
+                                width: 100,
+                                animatedOn: AnimatedOn.onTap,
+                                isReverse: true,
+                                selectedGradientColor: SweepGradient(colors: [
+                                  Color.fromARGB(255, 6, 193, 221),
+                                  Color.fromARGB(255, 18, 146, 151),
+                                  Color.fromARGB(255, 192, 14, 216),
+                                ], center: Alignment.centerRight),
+                                backgroundColor: Colors.black,
+                                transitionType: TransitionType.CENTER_LR_IN,
+                                // selectedBackgroundColor: Colors.black,
+                                selectedTextColor: Colors.white,
+                                text: '✔️',
+                                onPress: () {
+                                  if (formkeyy.currentState!.validate()) {
+                                    changepassword();
+                                  }
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    )));
+  }
+
+  void changepassword() async {
+    email = email.isEmpty ? storage.read('email') : email;
+    http.Response res =
+        await Authorepo.registerapi(oldpwd: oldpwd, pwd: pwd, email: email);
+    {
+      print(res.body);
+      if (res != null) {
+        var resopnse = jsonDecode(res.body);
+        print(oldpwd);
+        print(pwd);
+        print(email);
+        if (resopnse["message"] == "Successfully Password Changed") {
+          setState(() {
+            storage.write('pwd', pwd);
+          });
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0)
+            ..then((value) => Navigator.of(context).pop());
+        } else {
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0);
+        }
+      }
+    }
+  }
+}
+
+class Authorepo {
+  static Future registerapi(
+      {required String pwd,
+      required String oldpwd,
+      required String email}) async {
+    return get(Uri.parse(
+        "${Registerupi.baseurl}?action=chgpwd&pwd=$pwd&oldpwd=$oldpwd&email=$email"));
+  }
+}
+
+class Registerupi {
+  static String baseurl = "https://vstechno.co.in/news/api/user.php";
+}
+
+class forgetpass extends StatefulWidget {
+  @override
+  State<forgetpass> createState() => _forgetpassState();
+}
+
+class _forgetpassState extends State<forgetpass> {
+  var _formKey1 = GlobalKey<FormState>();
+  String emaill = '';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+            backgroundColor: Colors.black,
+            body: Stack(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset('yaksh_img/download bg/download (17).jpg',
+                      fit: BoxFit.cover),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromARGB(102, 70, 67, 67),
+                        ),
+                        height: 300,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_back_ios_new,
+                                        color: Colors.white,
+                                      )),
+                                  Text(
+                                    "Forget password",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Form(
+                                  key: _formKey1,
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SingleChildScrollView(
+                                          physics:
+                                              AlwaysScrollableScrollPhysics(),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text("Enter Email",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 17)),
+                                          ),
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white24,
+                                              borderRadius:
+                                                  BorderRadius.circular(13)),
+                                          child: TextFormField(
+                                            enableInteractiveSelection: true,
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            cursorColor: Color.fromRGBO(
+                                                255, 255, 255, 1),
+                                            toolbarOptions: ToolbarOptions(
+                                                copy: true,
+                                                cut: true,
+                                                paste: true,
+                                                selectAll: true),
+                                            validator: (input) =>
+                                                input!.isValidEmail()
+                                                    ? null
+                                                    : "plese enter email",
+                                            onChanged: (value) {
+                                              emaill = value;
+                                            },
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              contentPadding:
+                                                  EdgeInsets.all(10),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      if (_formKey1
+                                                          .currentState!
+                                                          .validate()) {
+                                                        forgetpass();
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          border: Border.all(
+                                                              width: 1.5,
+                                                              color: Colors
+                                                                  .white)),
+                                                      height: 40,
+                                                      width: 120,
+                                                      child: Text(
+                                                        "Enter",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 18),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text(
+                                                  'Cancel',
+                                                  style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 45, 178, 255)),
+                                                )),
+                                          ],
+                                        )
+                                      ]),
+                                ),
+                              ),
+                            ]),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )));
+  }
+
+  void forgetpass() async {
+    http.Response res = await Authorepoo.registerapii(email: emaill);
+    {
+      print(res.body);
+      if (res != null) {
+        var resopnse = jsonDecode(res.body);
+        print(emaill);
+        if (resopnse["message"] == "EmailID is Right") {
+          print(emaill);
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0)
+            ..then((value) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => forgetchangepwd(),
+                )));
+        } else {
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0);
+        }
+      }
+    }
+  }
+}
+
+class Authorepoo {
+  static Future registerapii({required String email}) async {
+    return get(
+        Uri.parse("${Registerupii.baseurl}?action=forgotpwd&email=$email"));
+  }
+}
+
+class Registerupii {
+  static String baseurl = "https://vstechno.co.in/news/api/user.php";
+}
+
+class forgetchangepwd extends StatefulWidget {
+  const forgetchangepwd({super.key});
+
+  @override
+  State<forgetchangepwd> createState() => _forgetchangepwdState();
+}
+
+class _forgetchangepwdState extends State<forgetchangepwd> {
+  var _formKey = GlobalKey<FormState>();
+  String email = storage.read('email');
+  String npwd = '';
+  String copwd = '';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                'yaksh_img/download bg/download (15).jpg',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Form(
+                key: _formKey,
+                child: Column(children: [
+                  ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromARGB(83, 249, 253, 255),
+                        ),
+                        height: 370,
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Change password",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SingleChildScrollView(
+                                      physics: AlwaysScrollableScrollPhysics(),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text("New password",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 17)),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white24,
+                                          borderRadius:
+                                              BorderRadius.circular(13)),
+                                      child: TextFormField(
+                                        enableInteractiveSelection: true,
+                                        textInputAction: TextInputAction.next,
+                                        cursorColor:
+                                            Color.fromRGBO(255, 255, 255, 1),
+                                        onChanged: (value) {
+                                          npwd = value;
+                                        },
+                                        style: TextStyle(color: Colors.white),
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          contentPadding: EdgeInsets.all(10),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text("Confirm password",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 17)),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white24,
+                                          borderRadius:
+                                              BorderRadius.circular(13)),
+                                      child: TextFormField(
+                                        enableInteractiveSelection: true,
+                                        textInputAction: TextInputAction.next,
+                                        cursorColor:
+                                            Color.fromRGBO(255, 255, 255, 1),
+                                        onChanged: (value) {
+                                          copwd = value;
+                                        },
+                                        validator: (value) {
+                                          if (value != null && value.isEmpty) {
+                                            return 'Conform password is required please enter';
+                                          }
+                                          if (value != npwd) {
+                                            return 'Confirm password not matching';
+                                          }
+                                          return null;
+                                        },
+                                        style: TextStyle(color: Colors.white),
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          contentPadding: EdgeInsets.all(10),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              if (_formKey.currentState!
+                                                  .validate()) forgetpass();
+                                            },
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                      width: 1.5,
+                                                      color: Colors.white)),
+                                              height: 40,
+                                              width: 120,
+                                              child: Text(
+                                                "Enter",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  'Cancel',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.red),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  void forgetpass() async {
+    http.Response res = await Authorepooo.registerapii(email: email, pwd: npwd);
+    {
+      print(res.body);
+      if (res != null) {
+        var resopnse = jsonDecode(res.body);
+
+        if (resopnse["message"] == "password successfully updated") {
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0)
+            ..then((value) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => startt(),
+                )));
+        } else {
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0);
+        }
+      }
+    }
+  }
+}
+
+class Authorepooo {
+  static Future registerapii(
+      {required String email, required String pwd}) async {
+    return get(Uri.parse(
+        "${Registerupiii.baseurl}?action=chgforgotpwd&email=$email&pwd=$pwd"));
+  }
+}
+
+class Registerupiii {
+  static String baseurl = 'https://vstechno.co.in/news/api/user.php';
+}
