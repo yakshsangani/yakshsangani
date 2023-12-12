@@ -1,0 +1,773 @@
+import 'package:flutter/material.dart';
+
+import 'main2.dart';
+import 'wear.dart';
+
+// class pro_model {
+//   String image;
+//   String text;
+//   pro_model({required this.image, required this.text});
+// }
+
+// class productap extends StatefulWidget {
+//   var productimg;
+//   productap({this.productimg});
+
+//   @override
+//   State<productap> createState() => _productapState();
+// }
+
+// class _productapState extends State<productap> {
+//   List<pro_model> list = [
+//     pro_model(
+//         image: "yaksh_img/landscap/download__1_-removebg-preview.png",
+//         text: "1"),
+//     pro_model(
+//         image: "yaksh_img/landscap/download__2_-removebg-preview.png",
+//         text: "1"),
+//     pro_model(
+//         image: "yaksh_img/landscap/download__3_-removebg-preview.png",
+//         text: "1"),
+//     pro_model(
+//         image: "yaksh_img/landscap/download__4_-removebg-preview.png",
+//         text: "1"),
+//     pro_model(
+//         image: "yaksh_img/landscap/download__18_-removebg-preview.png",
+//         text: "1"),
+//   ];
+//   // var productapimg = [
+//   //   'yaksh_img/landscap/download__1_-removebg-preview.png',
+//   //   'yaksh_img/landscap/download__2_-removebg-preview.png',
+//   //   'yaksh_img/landscap/download__3_-removebg-preview.png',
+//   //   'yaksh_img/landscap/download__4_-removebg-preview.png',
+//   //   'yaksh_img/landscap/download__18_-removebg-preview.png',
+//   //   'yaksh_img/landscap/download-removebg-preview.png',
+//   //   'yaksh_img/landscap/earphone.jpg',
+//   //   'yaksh_img/landscap/headphone.jpg',
+//   // ];
+//   // final product1name = [
+//   //   'Camera',
+//   //   'Dron',
+//   //   'Mobile',
+//   //   'T/V',
+//   //   'A/C',
+//   //   'Gamepad',
+//   //   'Earphone',
+//   //   'Headphone',
+//   // ];
+
+//   // final star = ['3.5', '4.5', '4.2', '3.6', '4.9', '3.0', '3.4', '2.0'];
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SafeArea(
+//         child: Container(
+//           alignment: Alignment.topLeft,
+//           height: MediaQuery.of(context).size.height,
+//           width: MediaQuery.of(context).size.width,
+//           child: Column(
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.start,
+//                 children: [
+//                   MaterialButton(
+//                     onPressed: () {
+//                       Navigator.of(context).pop();
+//                     },
+//                     child: Icon(
+//                       Icons.arrow_back,
+//                       size: 20,
+//                     ),
+//                   ),
+//                   Container(
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(20),
+//                       color: Colors.grey[200],
+//                     ),
+//                     width: 250,
+//                     child: TextFormField(
+//                       decoration: InputDecoration(
+//                           border: InputBorder.none,
+//                           prefixIcon: Icon(Icons.search),
+//                           hintText: 'search for a product'),
+//                     ),
+//                   ),
+//                   SizedBox(width: 18),
+//                   IconButton(
+//                       onPressed: () {},
+//                       icon: Icon(Icons.shopping_cart_outlined))
+//                 ],
+//               ),
+//               SizedBox(height: 20),
+//               Container(
+//                 height: MediaQuery.of(context).size.height / 1.2,
+//                 width: MediaQuery.of(context).size.width,
+//                 child: GridView.builder(
+//                   itemCount: list.length,
+//                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                       crossAxisCount: 2,
+//                       mainAxisExtent: 259,
+//                       childAspectRatio: 1,
+//                       crossAxisSpacing: 0,
+//                       mainAxisSpacing: 0),
+//                   itemBuilder: (context, index) {
+//                     return Container(
+//                       decoration: BoxDecoration(
+//                           border: Border.all(width: 0.5),
+//                           borderRadius: BorderRadius.circular(0)),
+//                       child: Padding(
+//                         padding: const EdgeInsets.only(left: 5.0),
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           children: [
+//                             Container(
+//                               height: 100,
+//                               width: 100,
+//                               decoration: BoxDecoration(
+//                                 image: DecorationImage(
+//                                     image: AssetImage(list[index].image),
+//                                     fit: BoxFit.scaleDown),
+//                               ),
+//                             ),
+//                             Text(
+//                               list[index].text,
+//                               style:
+//                                   TextStyle(color: Colors.black, fontSize: 20),
+//                             ),
+//                             Row(
+//                               mainAxisAlignment: MainAxisAlignment.start,
+//                               children: [
+//                                 // Padding(
+//                                 //   padding: const EdgeInsets.all(5.0),
+//                                 //   child: Text(price1[index],
+//                                 //       style: TextStyle(
+//                                 //           fontSize: 18, color: Colors.black)),
+//                                 // ),
+//                                 // Padding(
+//                                 //   padding: const EdgeInsets.all(5.0),
+//                                 //   child: Text(price[index],
+//                                 //       style: TextStyle(
+//                                 //           fontSize: 16,
+//                                 //           color: Colors.grey,
+//                                 //           decoration: TextDecoration.lineThrough)),
+//                                 // ),
+//                               ],
+//                             ),
+//                             SizedBox(height: 10),
+//                             Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 TextButton(
+//                                     // style: ButtonStyle(backgroundColor:
+//                                     //     MaterialStateProperty.resolveWith(
+//                                     //         (Set<MaterialState> states) {
+//                                     //   if (states
+//                                     //       .contains(MaterialState.selected))
+//                                     //     return Colors.black;
+//                                     //   return Colors.cyan;
+//                                     // })),
+//                                     onPressed: () {},
+//                                     child: Text(
+//                                       "See more product...",
+//                                       style: TextStyle(
+//                                           fontSize: 15, color: Colors.blue),
+//                                     )),
+//                                 Padding(
+//                                   padding: const EdgeInsets.only(right: 8.0),
+//                                   child: Icon(
+//                                     Icons.comment,
+//                                     color: Colors.grey,
+//                                     size: 21,
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                             SizedBox(height: 10),
+//                             Text(
+//                               "More details...",
+//                               style: TextStyle(color: Colors.black54),
+//                             ),
+//                             SizedBox(height: 10),
+//                             Row(
+//                               mainAxisAlignment: MainAxisAlignment.start,
+//                               children: [
+//                                 // Text(
+//                                 //   // star[index],
+//                                 //   style: TextStyle(
+//                                 //       fontSize: 18, color: Colors.green),
+//                                 // ),
+//                                 Icon(
+//                                   Icons.star_rate_rounded,
+//                                   color: Colors.green,
+//                                 ),
+//                               ],
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                 ),
+//               )
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class happyflashontapimg extends StatefulWidget {
+  var hfsimg;
+  final hfsname;
+  final hfsprice;
+  final hfspricee;
+  happyflashontapimg(
+      {this.hfsimg, this.hfsname, this.hfsprice, this.hfspricee});
+  @override
+  State<happyflashontapimg> createState() => _happyflashontapimgState();
+}
+
+class _happyflashontapimgState extends State<happyflashontapimg> {
+  var _images1 = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 80,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(Icons.arrow_back),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      child: Text(
+                        '''● Happy Flash Sales 🎁 ●''',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    SizedBox(width: 30),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.shopping_cart_outlined)),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 50, top: 30),
+                      child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.grey[200],
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    prefixIcon: Icon(Icons.search),
+                                    hintText: 'search for a product'),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Container(
+                              height: 200,
+                              width: 400,
+                              child: Image.asset(widget.hfsimg),
+                            ),
+                            SizedBox(height: 20),
+                            mycolorpiker1(
+                              avilablepiker: [
+                                'yaksh_img/landscap/download__1_-removebg-preview.png',
+                                'yaksh_img/landscap/download__2_-removebg-preview.png',
+                                'yaksh_img/landscap/download__3_-removebg-preview.png',
+                                'yaksh_img/landscap/download__4_-removebg-preview.png',
+                                'yaksh_img/landscap/download__18_-removebg-preview.png',
+                                'yaksh_img/landscap/download-removebg-preview.png',
+                                'yaksh_img/landscap/earphone.jpg',
+                                'yaksh_img/landscap/headphone.jpg',
+                              ],
+                              images: _images1,
+                              ontapimg: (value) {
+                                setState(() {
+                                  widget.hfsimg = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              widget.hfsname,
+                              style: TextStyle(fontSize: 25),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'more details...',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Text(
+                                  widget.hfspricee,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  widget.hfsprice,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Add to cart",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.green)),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "⭐⭐⭐⭐⭐/5",
+                              style: TextStyle(color: Colors.green),
+                            ),
+                            SizedBox(height: 10),
+                            Divider(height: 3),
+                            SizedBox(height: 30),
+                            Text("Suggasted for you",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.grey[700])),
+                            SizedBox(height: 10),
+                            watch(),
+                            SizedBox(
+                              height: 50,
+                            )
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class mycolorpiker1 extends StatefulWidget {
+  final images;
+  final avilablepiker;
+  final ontapimg;
+  mycolorpiker1({this.avilablepiker, this.images, this.ontapimg});
+
+  @override
+  State<mycolorpiker1> createState() => _mycolorpiker1State();
+}
+
+class _mycolorpiker1State extends State<mycolorpiker1> {
+  var _pike;
+  @override
+  void initState() {
+    _pike = widget.images;
+    super.initState();
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topLeft,
+      height: 90,
+      width: MediaQuery.of(context).size.width,
+      child: GridView.builder(
+        controller: ScrollController(keepScrollOffset: false),
+        itemCount: 8,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 50,
+            childAspectRatio: 1 / 1,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5),
+        itemBuilder: (context, index) {
+          final item = widget.avilablepiker[index];
+          return InkWell(
+              onTap: () {
+                widget.ontapimg(item);
+                setState(() {
+                  _pike = item;
+                });
+              },
+              child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage(item), fit: BoxFit.cover)),
+                  child: item == _pike
+                      ? Center(
+                          child: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Container()));
+        },
+      ),
+    );
+  }
+}
+
+class lwontapimg extends StatefulWidget {
+  var watchimgg;
+  final moredetails;
+  final waprice;
+  final waprice1;
+  final watchname;
+  lwontapimg(
+      {this.watchname,
+      this.watchimgg,
+      this.moredetails,
+      this.waprice,
+      this.waprice1});
+
+  @override
+  State<lwontapimg> createState() => _lwontapimgState();
+}
+
+class _lwontapimgState extends State<lwontapimg> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.cyanAccent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MaterialButton(
+                    minWidth: 80,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(Icons.arrow_back),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    child: Text(
+                      ''' Latest Watchs ⌚''',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  SizedBox(width: 30),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.shopping_cart_outlined)),
+                ],
+              ),
+            ),
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.grey[200],
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(Icons.search),
+                                  hintText: 'search for a product'),
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Container(
+                            height: 300,
+                            width: MediaQuery.of(context).size.width,
+                            child: Image.asset(widget.watchimgg),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            widget.moredetails,
+                            style: TextStyle(fontSize: 18, color: Colors.grey),
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            widget.watchname,
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.waprice1,
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.green),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                widget.waprice,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                    decoration: TextDecoration.lineThrough),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 13),
+                          Text("ADD TO CART 👇",
+                              style: TextStyle(fontSize: 17)),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.shopping_cart_outlined,
+                                size: 30,
+                              )),
+                          Divider(),
+                          SizedBox(height: 10),
+                          Text("Suggasted For You",
+                              style: TextStyle(fontSize: 17)),
+                          SizedBox(height: 10),
+                          happyflashsales(),
+                          SizedBox(height: 150),
+                        ]),
+                  ),
+                )),
+          ],
+        ),
+      ),
+    ));
+  }
+}
+
+class categoryontap1 {
+  String image;
+  var tap;
+  String text;
+  final more;
+
+  categoryontap1(
+      {required this.image,
+      required this.tap,
+      required this.text,
+      required this.more});
+}
+
+class categoryontap extends StatefulWidget {
+  const categoryontap({Key? key}) : super(key: key);
+
+  @override
+  State<categoryontap> createState() => _categoryontapState();
+}
+
+class _categoryontapState extends State<categoryontap> {
+  List<categoryontap1> list = [
+    categoryontap1(
+        more: '''    
+        kurti
+        sari
+        lahengha
+        choli''',
+        image: "yaksh_img/waer/WOMAN (2).png",
+        tap: womanswaer(),
+        text: 'Womans wear'),
+    categoryontap1(
+        more: '''
+        T-shirts
+        jens
+        top''',
+        image: "yaksh_img/waer/woman.png",
+        tap: womanswaer(),
+        text: 'Womans wear'),
+    categoryontap1(
+        more: '''
+        T-shirts
+        jens
+        pants
+        shirts
+        kurta''',
+        image: "yaksh_img/waer/kids.png",
+        tap: kidswaer(),
+        text: 'Kids wear'),
+    categoryontap1(
+        more: '''
+        kurta
+        shirts
+        pants
+        t-shirts''',
+        image: "yaksh_img/waer/mans.png",
+        tap: manswear(),
+        text: 'Mans wear'),
+    categoryontap1(
+        more: '''
+        shervanis
+        kurta
+        formals''',
+        image: "yaksh_img/waer/MANS (2).png",
+        tap: manswear(),
+        text: 'Mans wear'),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.only(bottom: 100),
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => list[index].tap,
+                            ));
+                      },
+                      child: Container(
+                        height: 200,
+                        width: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromARGB(255, 255, 250, 250),
+                                      blurRadius: 0)
+                                ],
+                                gradient: LinearGradient(
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Color.fromARGB(255, 6, 137, 181),
+                                    Colors.white,
+                                  ],
+                                )
+                                // image: DecorationImage(
+                                //     image: AssetImage(
+                                //       "yaksh_img/download bg/backg.jpg",
+                                //     ),
+                                //     fit: BoxFit.cover),
+                                ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Image.asset(
+                                  list[index].image,
+                                  fit: BoxFit.contain,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    width: 250,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: Color.fromARGB(
+                                                    110, 255, 248, 248),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10))),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                list[index].text,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255)),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            list[index].more,
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255)),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// class paymentlist {
+//   String total;
+//   String Item1;
+//   String discont;
+//   String dilivery;
+//   paymentlist(
+//       {required this.total,
+//       required this.Item1,
+//       required this.dilivery,
+//       required this.discont});
+// }
