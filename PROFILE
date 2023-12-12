@@ -1,0 +1,1258 @@
+import 'dart:convert';
+import 'dart:ui';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
+import 'package:share_plus/share_plus.dart';
+
+import 'package:yaksh/main.dart';
+import 'package:yaksh/project/payment.dart';
+import 'package:yaksh/project/setting.dart';
+import 'package:yaksh/project/main1.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'main1.dart';
+import 'product_tap.dart';
+
+GetStorage updatestorege = GetStorage();
+
+class profile extends StatefulWidget {
+  const profile({Key? key}) : super(key: key);
+
+  @override
+  State<profile> createState() => _profileState();
+}
+
+class _profileState extends State<profile> {
+  TextEditingController cnt = TextEditingController();
+  void share() {
+    Share.share(cnt.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final med = MediaQuery.of(context).size;
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        extendBody: true,
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10.0, bottom: 10, left: 20),
+                        child: Text(
+                          "Fluxstore",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                      SizedBox(
+                        width: med.width / 1.85,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => cart(),
+                              ));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => setting(),
+                              ));
+                        }),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 10, left: 10, right: 5),
+                          child: Icon(
+                            Icons.settings,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                child: InkWell(),
+                                radius: 50,
+                                backgroundImage: AssetImage(
+                                    "yaksh_img/IMG_20231016_015056_248.png"),
+                              ),
+                              SizedBox(width: 60),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => cart(),
+                                      ));
+                                },
+                                child: Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "1",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23),
+                                      ),
+                                      Text(
+                                        "Cart",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "0",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 23),
+                                    ),
+                                    Text(
+                                      "Purchese",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => wishlist(),
+                                      ));
+                                },
+                                child: Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "1",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23),
+                                      ),
+                                      Text(
+                                        "Fevorite",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 8.0, top: 10),
+                              child: Text(
+                                "${storage.read('firstname')}",
+                                style: TextStyle(color: Colors.white),
+                              )),
+                          SizedBox(height: 30),
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => editprofile1(),
+                                      ));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Expanded(
+                                    flex: 4,
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[800],
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      height: 35,
+                                      width: 160,
+                                      child: Text(
+                                        "Edit Profile",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Expanded(
+                                  flex: 4,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[800],
+                                        borderRadius: BorderRadius.circular(7)),
+                                    height: 35,
+                                    width: 160,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        final result = await FilePicker.platform
+                                            .pickFiles();
+                                        List<String> filesss = result!.files
+                                            .map((file) => file.path)
+                                            .cast<String>()
+                                            .toList();
+                                        if (filesss == null) {
+                                          return;
+                                        }
+                                        await Share.shareFiles(filesss);
+                                      },
+                                      child: Text(
+                                        "Share Prducts",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(3),
+                                child: Expanded(
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[800],
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      height: 35,
+                                      width: 40,
+                                      child: Icon(
+                                        Icons.person_add,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 10,
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Container(
+                            height: 200,
+                            width: med.width,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => mobile(),
+                                    ));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          Colors.black,
+                                          Colors.cyan,
+                                        ],
+                                      )),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        width: 150,
+                                        child: Image.asset(
+                                            'yaksh_img/product/mobile/s10.png',
+                                            fit: BoxFit.cover),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.topRight,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Text("New lounched phones",
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                  )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/realme.jpg"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/oneplus.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                      "yaksh_img/logos/samsung.png",
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    foregroundImage: AssetImage(
+                                                      "yaksh_img/logos/vivo.jpg",
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 20),
+                                            Text(
+                                              '''See Offers on Brand 
+         new phones''',
+                                              style: TextStyle(
+                                                  color: Colors.cyan[100]),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )),
+                        Container(
+                            height: 200,
+                            width: med.width,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => watch1(),
+                                    ));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          Colors.black,
+                                          Colors.white,
+                                        ],
+                                      )),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        width: 150,
+                                        child: Image.asset(
+                                            'yaksh_img/watch1/BOAT.png',
+                                            fit: BoxFit.cover),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.topRight,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Text("New collection off",
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                  )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/titan.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/metrix.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                      "yaksh_img/logos/boat.png",
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    foregroundImage: AssetImage(
+                                                      "yaksh_img/logos/fastrack.jpg",
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 20),
+                                            Text(
+                                              '''Get offers on letest 
+   watch collection''',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )),
+                        Container(
+                            height: 200,
+                            width: med.width,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => headphone(),
+                                    ));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          Colors.black,
+                                          Colors.blueAccent,
+                                        ],
+                                      )),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        width: 150,
+                                        child: Image.asset(
+                                            'yaksh_img/landscap/headphone.png',
+                                            fit: BoxFit.contain),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.topRight,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child:
+                                                  Text("New headphone for you ",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        color: Colors.white,
+                                                      )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/titan.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/metrix.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                      "yaksh_img/logos/boat.png",
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    foregroundImage: AssetImage(
+                                                      "yaksh_img/logos/fastrack.jpg",
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 20),
+                                            Text(
+                                              '''See new offer on  
+new headphones''',
+                                              style: TextStyle(
+                                                  color: Colors.blue[200]),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )),
+                        Container(
+                            height: 200,
+                            width: med.width,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => shoes(),
+                                      ));
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          Colors.black,
+                                          Colors.red,
+                                        ],
+                                      )),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        width: 150,
+                                        child: Image.asset(
+                                            'yaksh_img/product/shoes/shoes.png',
+                                            fit: BoxFit.contain),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.topRight,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Text(
+                                                  "New shoes collection for you ",
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.white,
+                                                  )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/nike.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "yaksh_img/logos/adidas.png"),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                      "yaksh_img/logos/bmw.jpg",
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    foregroundImage: AssetImage(
+                                                      "yaksh_img/logos/jorden.png",
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 20),
+                                            Text(
+                                              '''See lestest offer on your
+   favorite shoes brands''',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//editprofile
+class editprofile1 extends StatefulWidget {
+  const editprofile1({super.key});
+
+  @override
+  State<editprofile1> createState() => _editprofile1State();
+}
+
+class _editprofile1State extends State<editprofile1> {
+  var _formKey = GlobalKey<FormState>();
+  String fname = '';
+  String lname = '';
+  String email = '';
+  String mno = '';
+  String Address = '';
+  String City = '';
+  String Stat = '';
+  String Users_id = storage.read('Users_id');
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("yaksh_img/download bg/backg(1).jpg"),
+                fit: BoxFit.cover)),
+        child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          controller: ScrollController(initialScrollOffset: 0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: Text("Hey ${storage.read('firstname')}..",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic)),
+                ),
+                SizedBox(height: 10),
+                Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      height: 80.h,
+                      width: 90.w,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(100))),
+                      child: Lottie.asset(
+                          "yaksh_img/lottie_img/animation_lkqgxcse.json",
+                          fit: BoxFit.cover),
+                    ),
+                    TextButton(
+                        onPressed: () {}, child: Text("Change profile photo"))
+                  ],
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 30, left: 30, right: 30),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("First name",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15)),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read("firstname"),
+                                  onChanged: (value) {
+                                    fname = value;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.person,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Last name",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15)),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read('lastname'),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  onChanged: (value) {
+                                    lname = value;
+                                  },
+                                  // validator: (value) {
+                                  //   if (value!.isEmpty) {
+                                  //     return 'Enter Last name';
+                                  //   } else {
+                                  //     return null;
+                                  //   }
+                                  // },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.person,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("E-mail",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15)),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read('email'),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (input) => input!.isValidEmail()
+                                      ? null
+                                      : "Check your E-mail...",
+                                  onChanged: (value) {
+                                    email = value;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.email,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Mobile number",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15)),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read('mobileno'),
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(10)
+                                  ],
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.number,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (input) => input!.validateMobilE()
+                                      ? null
+                                      : "plese enter 10 digit mo.no.",
+                                  onChanged: (value) {
+                                    mno = value;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.mobile_friendly_rounded,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Address",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15)),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read('Address'),
+                                  onChanged: (value) {
+                                    Address = value;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.location_city,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("City",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15)),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read('City'),
+                                  onChanged: (value) {
+                                    City = value;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.location_city,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("State",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15)),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: TextFormField(
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  cursorColor: Color.fromRGBO(255, 255, 255, 1),
+                                  toolbarOptions: ToolbarOptions(
+                                      copy: true,
+                                      cut: true,
+                                      paste: true,
+                                      selectAll: true),
+                                  initialValue: updatestorege.read('State'),
+                                  onChanged: (value) {
+                                    Stat = value;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(10),
+                                    suffixIcon: Icon(
+                                      Icons.location_city,
+                                      color: Colors.white,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                      SizedBox(height: 80),
+                      Container(
+                        height: 70,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[400],
+                            borderRadius: BorderRadius.circular(20)),
+                        child: InkWell(
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              updateprofile();
+                            }
+                          },
+                          child: Center(
+                            child: Text(
+                              "Save change",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("Cancel", style: TextStyle(fontSize: 19)),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void updateprofile() async {
+    fname = fname == "" ? storage.read('firstname') : fname;
+    lname = lname.isEmpty ? storage.read('lastname') : lname;
+    email = email.isEmpty ? storage.read('email') : email;
+    mno = mno.isEmpty ? storage.read('mobileno') : mno;
+    // Address = Address.isEmpty ? updatestorege.read('Address') : Address;
+    // City = City.isEmpty ? updatestorege.read('City') : City;
+    // Stat = Stat.isEmpty ? updatestorege.read('State') : Stat;
+    Users_id = Users_id.isEmpty ? storage.read('Users_id') : Users_id;
+    print(fname);
+    print(lname);
+    print(email);
+    print(mno);
+    print(Address);
+    print(City);
+    print(Stat);
+    print(Users_id);
+    http.Response res = await Authorepo.registerapi(
+        fname: fname,
+        lname: lname,
+        email: email,
+        mno: mno,
+        Address: Address,
+        City: City,
+        Stat: Stat,
+        Users_id: Users_id);
+
+    {
+      print(res.body);
+
+      if (res != null) {
+        var resopnse = jsonDecode(res.body);
+
+        print(resopnse);
+        if (resopnse["message"] == 'Your profile Successfully updated') {
+          print(resopnse);
+          setState(() {
+            updatestorege.write('fname', fname);
+            updatestorege.write('lname', lname);
+            updatestorege.write('email', email);
+            updatestorege.write('mno', mno);
+            updatestorege.write('Address', Address);
+            updatestorege.write('City', City);
+            updatestorege.write('State', Stat);
+            updatestorege.write('Users_id', Users_id);
+          });
+
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0)
+            ..then((value) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => startt(),
+                )));
+        } else {
+          Fluttertoast.showToast(
+              msg: resopnse["message"],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(248, 2, 145, 255),
+              textColor: Color.fromARGB(255, 255, 254, 254),
+              fontSize: 16.0);
+        }
+      }
+    }
+  }
+}
+
+class registerupi {
+  static String baseurl = 'https://vstechno.co.in/news/api/user.php';
+}
+
+class Authorepo {
+  static Future registerapi({
+    required String fname,
+    required String lname,
+    required String email,
+    required String mno,
+    required String Address,
+    required String City,
+    required String Stat,
+    required String Users_id,
+  }) async {
+    return get(Uri.parse(
+        "${registerupi.baseurl}?action=updprofile&fname=$fname&lname=$lname&email=$email&mno=$mno&addr=$Address&city=$City&state=$Stat&user_id=$Users_id"));
+  }
+}
+
+extension mobilenumber on String {
+  bool validateMobilE() {
+    return RegExp(r'^.{10,}$').hasMatch(this);
+  }
+}
