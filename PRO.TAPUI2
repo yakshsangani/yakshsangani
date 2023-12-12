@@ -1,0 +1,2420 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yaksh/project/main1.dart';
+import 'payment.dart';
+import 'pr_tap_ui.dart';
+
+class camera_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int cam;
+
+  camera_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.cam,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class camera extends StatefulWidget {
+  const camera({Key? key}) : super(key: key);
+
+  @override
+  State<camera> createState() => _cameraState();
+}
+
+class _cameraState extends State<camera> {
+  List<camera_list> list = [
+    camera_list(
+      cam: 0,
+      price: " 59,999 /- ",
+      image: "yaksh_img/product/camera/camera1.png",
+      text: "Canon",
+      details1: "32.5MP APS-C CMOS Sensor",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    camera_list(
+      cam: 1,
+      price: " 49,000 /- ",
+      image: "yaksh_img/product/camera/camera2.png",
+      text: "Nikon",
+      details1: "Z6II 24-120mm",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    camera_list(
+      cam: 2,
+      price: " 2,50,000 /- ",
+      image: "yaksh_img/product/camera/camera3.png",
+      text: "Sony",
+      details1: "EOS M50 24.1MP DSLR Camera",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    camera_list(
+      cam: 3,
+      price: " 1,00,000 /- ",
+      image: "yaksh_img/product/camera/camera4.png",
+      text: "Nikon",
+      details1: "Product Dimension: 7 x 12.4 x 9.7 cm",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    camera_list(
+      cam: 4,
+      price: " 80,000 /- ",
+      image: "yaksh_img/product/camera/lans1.png",
+      text: "Canon Mf Super Telephoto Lens",
+      details1: "Telephoto Lens ,420-800mm",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    camera_list(
+      cam: 5,
+      price: " 95,000 /- ",
+      image: "yaksh_img/product/camera/lans2.png",
+      text: "Sony E-Mount 55-210mm",
+      details1: "9-blade circular aperture for smooth bokeh",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    camera_list(
+      cam: 6,
+      price: " 1,20,000 /- ",
+      image: "yaksh_img/product/camera/lans3.png",
+      text: "Raspberry Pi 16mm Telephoto Lens",
+      details1: "High Level of zoom for advanced applications",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    camera_list(
+      cam: 7,
+      price: " 3,20,000 /- ",
+      image: "yaksh_img/product/camera/lans4.png",
+      text: "FE 70-200 mm F2.8 GM OSS",
+      details1: "11-blade aperture for beautiful defocus effects",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+  ];
+  final title = '''C A M E R A / L A N S ''';
+  @override
+  Widget build(BuildContext context) {
+    final mh = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].cam,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class dron_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int dron;
+  dron_list(
+      {required this.image,
+      required this.dron,
+      required this.textcolor,
+      required this.text,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class dron extends StatefulWidget {
+  const dron({Key? key}) : super(key: key);
+
+  @override
+  State<dron> createState() => _dronState();
+}
+
+class _dronState extends State<dron> {
+  List<dron_list> list = [
+    dron_list(
+      dron: 0,
+      price: " 3,299 /- ",
+      image: "yaksh_img/product/dron/dron1.png",
+      text: "Riyal 4k HD Drone Camera ",
+      details1: " FPV Live Video RC Quadcopter WiFi Drone",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    dron_list(
+      dron: 1,
+      price: " 9,000 /- ",
+      image: "yaksh_img/product/dron/dron2.png",
+      text: "Riyal WiFi HD FPV",
+      details1: "Dual Camera CHHOTE Garuda Drone HD 4k Camera Live",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    dron_list(
+      dron: 2,
+      price: " 3,324 /- ",
+      image: "yaksh_img/product/dron/dron3.png",
+      text: "Lilyy Foldable Drone",
+      details1: "HQ WiFi Camera Remote Control for Kids Quadcopter",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    dron_list(
+      dron: 3,
+      price: " 7,999 /- ",
+      image: "yaksh_img/product/dron/dron4.png",
+      text: "Ziria WiFi HD 1080P",
+      details1: "| WiFi HD 1080P + 720 P FPV Dual Camera | Box Version |",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    dron_list(
+      dron: 4,
+      price: " 3,899 /- ",
+      image: "yaksh_img/product/dron/dron5.png",
+      text: "Amitasha Remote Control Dual HD ",
+      details1: "Wi-Fi Camera Foldable Drone Flying Quadcopter",
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    dron_list(
+      dron: 5,
+      price: " 35,000 /- ",
+      image: "yaksh_img/product/dron/dron6.png",
+      text: "IZI Sky 4K ",
+      details1:
+          "4K 20MP CMOS 1/3.06 Camera Drone,3 Axis Gimbal 5KM Transmission",
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''D R O N S''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].dron,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class mobile_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  var mob;
+  Color textcolor;
+  String details1;
+  mobile_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.price,
+      required this.mob,
+      required this.details1,
+      required this.color});
+}
+
+class mobile extends StatefulWidget {
+  @override
+  State<mobile> createState() => _mobileState();
+}
+
+class _mobileState extends State<mobile> {
+  List<mobile_list> list = [
+    mobile_list(
+      mob: 0,
+      price: " 42,299 /- ",
+      image: "yaksh_img/product/mobile/mobile1.png",
+      text: "Samsung S10",
+      details1: '''ROM/REM : 8/128,
+Battery : 3300mAh,
+Rear camera : 16MP+12MP+12MP,
+Front camera : 12MP
+''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    mobile_list(
+      mob: 1,
+      price: " 65,599 /- ",
+      image: "yaksh_img/product/mobile/mobile2.png",
+      text: "Samsung S10+",
+      details1: '''ROM/REM : 8/128,
+Battery : 4200mAh,
+Rear camera : 16MP+16MP+12MP,
+Front camera : 16MP
+''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    mobile_list(
+      mob: 2,
+      price: " 49,999 /- ",
+      image: "yaksh_img/product/mobile/mobile3.png",
+      text: "LG Wing",
+      details1: '''ROM/REM : 8/128,
+Battery : 4500mAh,
+Rear camera : 32MP+18MP+12MP,
+Front camera : 16MP
+''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    mobile_list(
+      mob: 3,
+      price: " 25,000 /- ",
+      image: "yaksh_img/product/mobile/mobile4.png",
+      text: "Vivo V20",
+      details1: '''ROM/REM : 12/256,
+Battery : 4200mAh,
+Rear camera : 48MP+12MP+8MP,
+Front camera : 12MP
+''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    mobile_list(
+      mob: 4,
+      price: " 14,899/- ",
+      image: "yaksh_img/product/mobile/mobile5.png",
+      text: "Xiaome poco X2",
+      details1: '''ROM/REM : 6/64,
+Battery : 4500mAh,
+Rear camera : 64MP+12MP+12MP+8MP,
+Front camera : 20MP+2MP
+''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    mobile_list(
+      mob: 5,
+      price: '''  મફત /- ''',
+      image: "yaksh_img/product/mobile/mobile6.png",
+      text: "IPhone 15 pro max ",
+      details1: '''ROM/REM : 12/256,
+Battery : 4100mAh,
+Rear camera : 16MP+12MP+12MP,
+Front camera : 16MP''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''M O B I L E S''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].mob,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TV_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int tv;
+  TV_list(
+      {required this.image,
+      required this.tv,
+      required this.textcolor,
+      required this.text,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class TV extends StatefulWidget {
+  @override
+  State<TV> createState() => _TVState();
+}
+
+class _TVState extends State<TV> {
+  List<TV_list> list = [
+    TV_list(
+      tv: 0,
+      price: " 14,999 /- ",
+      image: "yaksh_img/product/TV/TV1.png",
+      text: "OnePlus TV",
+      details1:
+          ''' 80 cm (32 inches) Y Series HD Ready LED Smart Android TV 32Y1 (Black)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    TV_list(
+      tv: 1,
+      price: " 12,990/- ",
+      image: "yaksh_img/product/TV/TV2.png",
+      text: "Samsung TV",
+      details1:
+          '''80 cm (32 Inches) Wondertainment Series HD Ready LED Smart TV UA32T4340BKXXL (Glossy Black)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    TV_list(
+      tv: 2,
+      price: " 11,499 /- ",
+      image: "yaksh_img/product/TV/TV3.png",
+      text: "Redmi TV",
+      details1:
+          '''80 cm (32 inches) HD Ready Smart LED Fire TV L32R8-FVIN (Black)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    TV_list(
+      tv: 3,
+      price: " 11,999 /- ",
+      image: "yaksh_img/product/TV/TV4.png",
+      text: "MI TV",
+      details1:
+          '''80 cm (32 inches) 5A Series HD Ready Smart Android LED TV L32M7-5AIN (Black)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    TV_list(
+      tv: 4,
+      price: " 56,899/- ",
+      image: "yaksh_img/product/TV/TV5.png",
+      text: "LG TV",
+      details1:
+          '''139 cm (55 inches) 4K Ultra HD Smart NanoCell TV 55NANO73SQA (Ashed Blue)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    TV_list(
+      tv: 5,
+      price: ' 52,499 ',
+      image: "yaksh_img/product/TV/TV6.png",
+      text: "Sony TV",
+      details1:
+          '''Bravia 139 cm (55 inches) 4K Ultra HD Smart LED Google TV KD-55X74K (Black)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''S M A R T  T.V. ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].tv,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Gamepad_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int ga;
+  Gamepad_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.ga,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class Gamepad extends StatefulWidget {
+  @override
+  State<Gamepad> createState() => _GamepadState();
+}
+
+class _GamepadState extends State<Gamepad> {
+  List<Gamepad_list> list = [
+    Gamepad_list(
+      ga: 0,
+      price: " 1,424 /- ",
+      image: "yaksh_img/product/gamepad/gamepad1.png",
+      text: "EvoFox Gamepad",
+      details1:
+          '''EvoFox Elite Ops Wireless Gamepad for Android TV | 8+ Hours of Play Time |''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    Gamepad_list(
+      ga: 1,
+      price: " 12,990/- ",
+      image: 'yaksh_img/product/gamepad/gamepad2.png',
+      text: "Amkette EvoFox Gamepad",
+      details1:
+          '''Amkette EvoFox Go Smartphone Bluetooth Gamepad with The Dojo App''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    Gamepad_list(
+      ga: 2,
+      price: " 11,499 /- ",
+      image: "yaksh_img/product/gamepad/gamepad3.png",
+      text: "Redgear Gamepad",
+      details1:
+          '''Redgear Pro Wireless Gamepad with 2.4GHz Wireless Technology''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    Gamepad_list(
+      ga: 3,
+      price: " 11,999 /- ",
+      image: "yaksh_img/product/gamepad/gamepad4.png",
+      text: "Cosmic Byte Gamepad",
+      details1:
+          '''C3070W Nebula 2.4G Wireless Gamepad for PC supports Windows XP/7/8/10/11''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    Gamepad_list(
+      ga: 4,
+      price: " 56,899 /- ",
+      image: "yaksh_img/product/gamepad/gamepad5.png",
+      text: "Redgear Gamepad",
+      details1:
+          ''' MS-150 Wired Gamepad with 2 Digital triggers, 2 Analog Sticks''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    Gamepad_list(
+      ga: 5,
+      price: ' 40,000 /-',
+      image: "yaksh_img/product/gamepad/gamepad6.png",
+      text: "Amkette Gamepad",
+      details1:
+          '''EvoFox One Universal Bluetooth Gamepad for iOS, iPadOS, Android, PS4 and PC (X-Input)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''G A M E P A D ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].ga,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AC_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int ac;
+  AC_list(
+      {required this.image,
+      required this.ac,
+      required this.textcolor,
+      required this.text,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class AC extends StatefulWidget {
+  @override
+  State<AC> createState() => _ACState();
+}
+
+class _ACState extends State<AC> {
+  List<AC_list> list = [
+    AC_list(
+      ac: 0,
+      price: " 32,424 /- ",
+      image: "yaksh_img/product/AC/AC1.png",
+      text: "Lloyd AC",
+      details1:
+          '''1.5 Ton 3 Star Inverter Split AC (5 in 1 Convertible, Copper, Anti-Viral + PM 2.5 Filter, 2023 Model, White, GLS18I3FWAMC)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    AC_list(
+      ac: 1,
+      price: " 35,990/- ",
+      image: 'yaksh_img/product/AC/AC2.png',
+      text: "Samsung AC",
+      details1:
+          '''1.5 Ton 3 Star Inverter Split AC (Copper, Convertible 5-in-1 Cooling Mode, Easy Filter Plus (Anti-Bacteria), 2023 Model AR18CYLZABE White)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    AC_list(
+      ac: 2,
+      price: " 32,499 /- ",
+      image: "yaksh_img/product/AC/AC3.png",
+      text: "Voltas AC",
+      details1:
+          '''1.4 Ton 3 Star Inverter Split AC(Copper, Adjustable Cooling, Anti-dust Filter, 2023 Model, 173V Vectra Platina, White)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    AC_list(
+      ac: 3,
+      price: " 41,999 /- ",
+      image: "yaksh_img/product/AC/AC4.png",
+      text: "LG AC",
+      details1:
+          ''' Ton 5 Star AI DUAL Inverter Split AC (Copper, Super Convertible 6-in-1 Cooling,Anti-Virus Protection, 2023 Model, White)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    AC_list(
+      ac: 4,
+      price: " 56,899 /- ",
+      image: "yaksh_img/product/AC/AC5.png",
+      text: "Panasonic AC",
+      details1:
+          '''1 Ton 5 Star Wi-Fi Inverter Smart Split AC (Copper Condenser, 7 in 1 Convertible with additional AI Mode, PM 0.1 Air Purification Filter, White)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    AC_list(
+      ac: 5,
+      price: ' 40,000 /- ',
+      image: "yaksh_img/product/AC/AC6.png",
+      text: "Whirlpool AC",
+      details1:
+          '''1.5 Ton 3 Star, Flexicool Inverter Split AC (Copper, Convertible 4-in-1 Cooling Mode, HD Filter 2023 Model, S3K1PPO, White)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''A / C ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].ac,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class headphone_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int he;
+  headphone_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.he,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class headphone extends StatefulWidget {
+  @override
+  State<headphone> createState() => _headphoneState();
+}
+
+class _headphoneState extends State<headphone> {
+  List<headphone_list> list = [
+    headphone_list(
+      he: 0,
+      price: " 20,499 /- ",
+      image: "yaksh_img/product/headphone/headphone1.png",
+      text: "boAt headphone",
+      details1:
+          '''Rockerz 450 Bluetooth On Ear Headphones with Mic, Upto 15 Hours Playback, 40MM Drivers, Padded Ear Cushions, Integrated Controls and Dual Modes(Aqua Blue)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    headphone_list(
+      he: 1,
+      price: " 15,890/- ",
+      image: 'yaksh_img/product/headphone/headphone2.png',
+      text: "boAt headphone",
+      details1:
+          '''Rockerz 450 Bluetooth On Ear Headphones with Mic, Upto 15 Hours Playback, 40MM Drivers, Integrated Controls and Dual Modes(Luscious Black)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    headphone_list(
+      he: 2,
+      price: " 13,809 /- ",
+      image: "yaksh_img/product/headphone/headphone3.png",
+      text: " Infinity headphone",
+      details1:
+          ''' (JBL Glide 500, 20 Hrs Playtime with Quick Charge, Wireless On Ear Headphone with Mic, Deep Bass, Dual Equalizer, Bluetooth 5.0 with Voice Assistant Support (Black)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    headphone_list(
+      he: 3,
+      price: " 20,999 /- ",
+      image: "yaksh_img/product/headphone/headphone4.png",
+      text: "Amazon Basics Headset",
+      details1: '''2-way communication headset for exciting video game play''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    headphone_list(
+      he: 4,
+      price: " 21,253 /- ",
+      image: "yaksh_img/product/headphone/headphone5.png",
+      text: "Cosmic Byte headphone",
+      details1:
+          '''Stardust Wired On Ear Headphones with Mic Flexible for PS4, Xbox One, Laptop, PC, iPhone and Android Phones (Black,Blue)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    headphone_list(
+      he: 5,
+      price: ' 21,979 /-',
+      image: "yaksh_img/product/headphone/headphone6.png",
+      text: "Cosmic Byte headphone",
+      details1:
+          '''Over the Ear Wired Headsets with Mic & LED - G4000 Edition (Blue, Pack Of 1)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''H E A D P H O N E ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].he,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Text(
+                                list[index].details1,
+                                style: TextStyle(
+                                    // color: list[index].textcolor,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class earphone_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int ea;
+
+  earphone_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.price,
+      required this.details1,
+      required this.ea,
+      required this.color});
+}
+
+class earphone extends StatefulWidget {
+  @override
+  State<earphone> createState() => _earphoneState();
+}
+
+class _earphoneState extends State<earphone> {
+  List<earphone_list> list = [
+    earphone_list(
+      ea: 0,
+      price: " 12,600 /- ",
+      image: "yaksh_img/product/earphone/earphone1.png",
+      text: "Sennheiser earphone",
+      details1:
+          ''' Consumer Audio IE 80 S Adjustable Bass Wired In Ear earbud Headphone with Mic (Black)''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    earphone_list(
+      ea: 1,
+      price: " 14,980/- ",
+      image: 'yaksh_img/product/earphone/earphone2.png',
+      text: "Shure earphone",
+      details1:
+          '''Shure SE846 Wired in Ear Earphone, Clear, Transparent (SE846-CL-A)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    earphone_list(
+      ea: 2,
+      price: " 17,899 /- ",
+      image: "yaksh_img/product/earphone/earphone3.png",
+      text: " FiiO earphone",
+      details1: '''FiiO FA7 Wired in Ear Earphone with Mic (Smoke)''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    earphone_list(
+      ea: 3,
+      price: " 25,369 /- ",
+      image: "yaksh_img/product/earphone/earphone4.png",
+      text: "Amazon Basics Gaming earphone",
+      details1:
+          '''Dual Cavity Wired Earphone with Dynamic Driver Monitor Stereo Base Magnet Mode Three Modes ''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    earphone_list(
+      ea: 4,
+      price: " 25,639 /- ",
+      image: "yaksh_img/product/earphone/earphone5.png",
+      text: "IKKO earphone",
+      details1:
+          '''OH1S in-Ear Monitor,Wired Earbuds Headphones, Noise-Isolating IEM earphone with MMCX Detachable''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    earphone_list(
+      ea: 5,
+      price: ' 10,000 /-',
+      image: "yaksh_img/product/earphone/earphone6.png",
+      text: "Letshuoer earphone",
+      details1:
+          '''S12 in-Ear Headphones 14.8mm Planar Magnetic Driver Wired in-Ear HiFi earphone ''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''E A R P H O N E ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].ea,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: SingleChildScrollView(
+                                child: Text(
+                                  list[index].details1,
+                                  style: TextStyle(
+                                      // color: list[index].textcolor,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class watch1_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int wat;
+  watch1_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.price,
+      required this.wat,
+      required this.details1,
+      required this.color});
+}
+
+class watch1 extends StatefulWidget {
+  @override
+  State<watch1> createState() => _watch1State();
+}
+
+class _watch1State extends State<watch1> {
+  var list0 = [
+    'yaksh_img/product/headphone/headphone6.png',
+    ' yaksh_img/product/headphone/headphone5.png'
+  ];
+  List<watch1_list> list = [
+    watch1_list(
+      wat: 0,
+      price: " 21,424  / -",
+      image: "yaksh_img/product/watch/watch1.png",
+      text: "Diesel watch",
+      details1: '''Analog Black Dial (Big dial) Men's Watch1-DZ7395''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    watch1_list(
+      wat: 1,
+      price: " 10,990 /- ",
+      image: 'yaksh_img/product/watch/watch2.png',
+      text: "Citizen watch",
+      details1: '''Analog Blue Dial Men's Watch1-NJ0151-88M''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    watch1_list(
+      wat: 2,
+      price: " 15,499  /-",
+      image: "yaksh_img/product/watch/watch3.png",
+      text: " Diesel watch",
+      details1: '''Spiked Analog Silver Dial Men's Watch1-DZ4629''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    watch1_list(
+      wat: 3,
+      price: " 25,999  /-",
+      image: "yaksh_img/product/watch/watch4.png",
+      text: "Seiko watch",
+      details1: '''Analog Black Dial Men's Watch1-SRPD55K1''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    watch1_list(
+      wat: 4,
+      price: " 29,899 /- ",
+      image: "yaksh_img/product/watch/watch5.png",
+      text: "Fossil watch",
+      details1: '''Townsman Analog Black Dial Men's Watch1-ME3197''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    watch1_list(
+      wat: 5,
+      price: ' 26,900 /- ',
+      image: "yaksh_img/product/watch/watch6.png",
+      text: "Emporio Armani watch",
+      details1: '''Renato Analog Blue Dial Men's Watch1-AR60056''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''W A T C H ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].wat,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: SingleChildScrollView(
+                                child: Text(
+                                  list[index].details1,
+                                  style: TextStyle(
+                                      // color: list[index].textcolor,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class shoes_list {
+  String image;
+  String text;
+  String price;
+  Color color;
+  Color textcolor;
+  String details1;
+  int sh;
+  shoes_list(
+      {required this.image,
+      required this.textcolor,
+      required this.text,
+      required this.sh,
+      required this.price,
+      required this.details1,
+      required this.color});
+}
+
+class shoes extends StatefulWidget {
+  @override
+  State<shoes> createState() => _shoesState();
+}
+
+class _shoesState extends State<shoes> {
+  List<shoes_list> list = [
+    shoes_list(
+      sh: 0,
+      price: " 21,424 /-",
+      image: "yaksh_img/product/shoes/shoes1.png",
+      text: "ALTRA shoes",
+      details1: '''Men's AL0A547L Lone Peak 6 Trail Running Shoe''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    shoes_list(
+      sh: 1,
+      price: " 10,990/-",
+      image: 'yaksh_img/product/shoes/shoes2.png',
+      text: "SALOMON shoes",
+      details1: '''Pulsar Trail''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    shoes_list(
+      sh: 2,
+      price: " 15,499 /- ",
+      image: "yaksh_img/product/shoes/shoes3.png",
+      text: " Nike shoes",
+      details1: '''Mens Air Zoom Rival Fly 3 Running Shoe''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+    shoes_list(
+      sh: 3,
+      price: " 25,999 /- ",
+      image: "yaksh_img/product/shoes/shoes4.png",
+      text: "SALOMON shoes",
+      details1: '''Supercross 4''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    shoes_list(
+      sh: 4,
+      price: " 29,899/- ",
+      image: "yaksh_img/product/shoes/shoes5.png",
+      text: "Puma shoes",
+      details1: '''Mens Liberate Nitro Cooladapt Running Shoe''',
+      color: Colors.grey,
+      textcolor: Colors.white,
+    ),
+    shoes_list(
+      sh: 5,
+      price: ' 26,900/- ',
+      image: "yaksh_img/product/shoes/shoes6.png",
+      text: "SALOMON shoes",
+      details1: '''Men's Hypulse Trail Running Shoe''',
+      color: Colors.white,
+      textcolor: Colors.black,
+    ),
+  ];
+  final title = '''S H O E S ''';
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(96, 0, 0, 0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_checkout_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => cart(),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.all(0),
+                physics: BouncingScrollPhysics(),
+                itemCount: list.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 337),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: .1, color: Colors.black),
+                      // color: list[index].color,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(0)),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UI(
+                                  image: list[index].image,
+                                  text: list[index].text,
+                                  price: list[index].price,
+                                  details: list[index].details1,
+                                  cam: list[index].sh,
+                                  title: title),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100.h,
+                              child: Image.asset(list[index].image),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              list[index].text,
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: SingleChildScrollView(
+                                child: Text(
+                                  list[index].details1,
+                                  style: TextStyle(
+                                      // color: list[index].textcolor,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                            ),
+                            Divider(height: 0),
+                            Text(
+                              "Offer price : ",
+                              style: TextStyle(
+                                  // color: list[index].textcolor,
+                                  ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  // color: list[index].textcolor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 2.0, right: 2, top: 1, bottom: 1),
+                                child: Text(
+                                  list[index].price,
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      // color: list[index].color,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Get available bank offer...",
+                              // style: TextStyle(color: list[index].textcolor),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
