@@ -1,0 +1,452 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:yaksh/project/payment.dart';
+import 'package:yaksh/project/pr_tap_ui.dart';
+
+import 'ontap.dart';
+import 'product_tap.dart';
+
+class logo extends StatefulWidget {
+  @override
+  State<logo> createState() => _logoState();
+}
+
+class _logoState extends State<logo> {
+  var logoos = [
+    'yaksh_img/logos/logo.png',
+    'yaksh_img/logos/logo1.jpg',
+    'yaksh_img/logos/logo2.png',
+    'yaksh_img/logos/logo4.png',
+    'yaksh_img/logos/logo5.jpg',
+    'yaksh_img/logos/images.jpg',
+    'yaksh_img/logos/logo7.png',
+    'yaksh_img/logos/logo8.png',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+            backgroundColor: Color.fromARGB(71, 136, 127, 127), elevation: 0),
+        body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: GridView.builder(
+              itemCount: logoos.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: 100,
+                  childAspectRatio: 1.5,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20),
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        logoos[index],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            )));
+  }
+}
+
+class watch1 {
+  String image;
+  String text;
+  String details;
+  final price;
+  int wa;
+  watch1(
+      {required this.details,
+      required this.image,
+      required this.text,
+      required this.price,
+      required this.wa});
+}
+
+class watch extends StatefulWidget {
+  const watch({Key? key}) : super(key: key);
+
+  @override
+  State<watch> createState() => watchState();
+}
+
+class watchState extends State<watch> {
+  List<watch1> list = [
+    watch1(
+        price: '''₹ 32,000''',
+        details: 'Bold Analog White Dial Mens...',
+        image: 'yaksh_img/watch1/71uNxALGnpL._AC_UL400_-removebg-preview.png',
+        text: 'FASTRACK',
+        wa: 0),
+    watch1(
+        price: '''₹ 20,000''',
+        details: 'boAt Flash Edition Smart Watch...',
+        image: 'yaksh_img/watch1/BOAT.png',
+        text: 'Boat',
+        wa: 1),
+    watch1(
+        price: '''₹ 16,000''',
+        details: 'Fastrack Bold Analog White Dial Mens...',
+        image: 'yaksh_img/watch1/fastreck-removebg-preview.png',
+        text: 'FASTRACK',
+        wa: 2),
+    watch1(
+        price: '''₹ 40,000''',
+        details: '''Matrix Analogue Men's Watch''',
+        image: 'yaksh_img/watch1/matrix-removebg-preview.png',
+        text: 'Matrix',
+        wa: 3),
+    watch1(
+        price: '''₹ 10,000''',
+        details: '''Analog Black Dial Men's Watch-TWEG18410...''',
+        image: 'yaksh_img/watch1/timex-removebg-preview.png',
+        text: 'Timex',
+        wa: 4),
+    watch1(
+        price: '''₹ 18,000''',
+        details: 'Mens Mens Dress - 96B149...',
+        image: 'yaksh_img/watch1/bulova-removebg-preview.png',
+        text: 'Bulova',
+        wa: 5),
+  ];
+  final title = 'W A T C H';
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Color.fromARGB(102, 228, 222, 222),
+          ),
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Latest watchs⌚',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "See all",
+                          style: TextStyle(color: Colors.grey),
+                        ))
+                  ],
+                ),
+                Container(
+                  height: 375,
+                  width: MediaQuery.of(context).size.width,
+                  child: GridView.builder(
+                    scrollDirection: Axis.horizontal,
+                    controller: ScrollController(keepScrollOffset: false),
+                    itemCount: list.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 1,
+                        mainAxisExtent: 255),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UI(
+                                    title: title,
+                                    image: list[index].image,
+                                    details: list[index].details,
+                                    text: list[index].text,
+                                    wa: list[index].wa,
+                                    price: list[index].price),
+                              ));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(width: 1),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 200,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        list[index].image,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  list[index].details,
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  list[index].text,
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      list[index].price,
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.green),
+                                    ),
+                                    SizedBox(width: 8),
+                                  ],
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => cart(),
+                                          ));
+                                    },
+                                    child: Text("Order now"))
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class happyfleshsales_item {
+  String image;
+  String text;
+  var tap;
+  String price;
+  String off;
+  String price1;
+  happyfleshsales_item(
+      {required this.image,
+      required this.price,
+      required this.tap,
+      required this.off,
+      required this.text,
+      required this.price1});
+}
+
+class happyflashsales extends StatefulWidget {
+  const happyflashsales({Key? key}) : super(key: key);
+
+  @override
+  State<happyflashsales> createState() => _happyflashsalesState();
+}
+
+class _happyflashsalesState extends State<happyflashsales> {
+  List<happyfleshsales_item> item = [
+    happyfleshsales_item(
+        image: "yaksh_img/product/camera/camera1.png",
+        price: " ₹ 60,000 ",
+        price1: "72,000 ",
+        off: " 20% off ",
+        tap: camera(),
+        text: "Canon"),
+    happyfleshsales_item(
+        image: "yaksh_img/product/shoes/shoes.png",
+        price: " ₹ 10,560 ",
+        price1: "12,000",
+        off: " 12% off ",
+        tap: shoes(),
+        text: "Shoes"),
+    happyfleshsales_item(
+        image: "yaksh_img/product/mobile/s10.png",
+        price: " ₹ 19,000 ",
+        price1: "50,000,",
+        off: " 62% off ",
+        tap: mobile(),
+        text: "Mobiles"),
+    happyfleshsales_item(
+        image: "yaksh_img/product/headphone/headphone1.png",
+        price: " ₹ 4,500 ",
+        price1: "5,000 ",
+        off: " 10% off ",
+        tap: headphone(),
+        text: "Headphone"),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Color.fromARGB(102, 228, 222, 222),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Happy Flash Sales 🎁",
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) => happyflashontap(),));
+                        },
+                        child: Text(
+                          "See all",
+                          style: TextStyle(color: Colors.grey),
+                        ))
+                  ],
+                ),
+              ),
+              Container(
+                height: 230,
+                width: size.width,
+                child: GridView.builder(
+                  controller: ScrollController(keepScrollOffset: false),
+                  itemCount: item.length,
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 218,
+                    mainAxisExtent: 220,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 20,
+                    childAspectRatio: 1,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 0.5, color: Colors.black),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => item[index].tap,
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 5),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.redAccent,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              bottomRight:
+                                                  Radius.circular(10))),
+                                      child: Text(
+                                        item[index].off,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                height: 80,
+                                width: size.width,
+                                child: Image.asset(
+                                  item[index].image,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                item[index].text,
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.only(
+                                            bottomRight: Radius.circular(10),
+                                            topLeft: Radius.circular(10))),
+                                    child: Text(
+                                      item[index].price,
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  ),
+                                  Text(item[index].price1,
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          decoration:
+                                              TextDecoration.lineThrough)),
+                                  Icon(Icons.shopping_cart_outlined)
+                                ],
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                "In stock..",
+                                style: TextStyle(
+                                    color: Colors.green, fontSize: 15),
+                              ),
+                              Text(
+                                "Hurry up..",
+                                style: TextStyle(color: Colors.grey),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
